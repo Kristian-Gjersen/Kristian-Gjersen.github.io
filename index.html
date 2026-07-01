@@ -171,8 +171,8 @@
       <span class="contact-item"><span class="ci">✉</span> <a href="mailto:Gjersen2@gmail.com">Gjersen2@gmail.com</a></span>
       <span class="contact-item"><span class="ci">🔗</span> <a href="https://www.linkedin.com/in/kristian-gjersen-246243348/" target="_blank">LinkedIn</a></span>
     </div>
-    <p class="hint" data-da>// bevæg musen for at aktivere — klik for at klippe knudepunkter</p>
-    <p class="hint" data-en>// hover to activate — click to cut intersections</p>
+    <p class="hint" data-da>// før musen over en linje for at bryde forbindelsen</p>
+    <p class="hint" data-en>// move across a line to break the connection</p>
   </div>
 </div>
 
@@ -311,106 +311,209 @@ function setLang(lang) {
   document.documentElement.lang = lang;
 }
 
-// Interactive electric grid
+// Interactive spring mesh
 (function() {
   const canvas = document.getElementById('grid-canvas');
   const ctx = canvas.getContext('2d');
-  const cut = new Set();
-  let mx = -9999, my = -9999;
-  const SPACING = 50;
+  const hero = document.querySelector('.hero-wrap');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const SPACING = 58;
+  const SPRING_STRENGTH = 0.021;
+  const ANCHOR_STRENGTH = 0.0018;
+  const DAMPING = 0.965;
+  const CUT_DISTANCE = 9;
+  const nodes = [];
+  const springs = [];
+  const sparks = [];
+  let cols = 0, rows = 0, width = 0, height = 0, dpr = 1;
+  let mouse = { x: -9999, y: -9999 };
+  let lastTime = performance.now();
+
+  function nodeAt(c, r) { return nodes[r * cols + c]; }
+
+  function buildMesh() {
+    nodes.length = 0;
+    springs.length = 0;
+    sparks.length = 0;
+    canvas.dataset.brokenSprings = '0';
+    cols = Math.ceil(width / SPACING) + 1;
+    rows = Math.ceil(height / SPACING) + 1;
+
+    const offsetX = (width - (cols - 1) * SPACING) / 2;
+    const offsetY = (height - (rows - 1) * SPACING) / 2;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const x = offsetX + c * SPACING;
+        const y = offsetY + r * SPACING;
+        const edge = c === 0 || r === 0 || c === cols - 1 || r === rows - 1;
+        nodes.push({ x, y, ox:x, oy:y, vx:0, vy:0, pinned:edge });
+      }
+    }
+
+    // A rest length below the drawn spacing gives the mesh stored tension.
+    const rest = SPACING * 0.88;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        if (c < cols - 1) springs.push({ a:nodeAt(c,r), b:nodeAt(c+1,r), rest, broken:false });
+        if (r < rows - 1) springs.push({ a:nodeAt(c,r), b:nodeAt(c,r+1), rest, broken:false });
+      }
+    }
+  }
 
   function resize() {
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
+    const rect = canvas.getBoundingClientRect();
+    width = rect.width;
+    height = rect.height;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    buildMesh();
+  }
+
+  function simulate(dt) {
+    if (reducedMotion) return;
+    for (const s of springs) {
+      if (s.broken) continue;
+      const dx = s.b.x - s.a.x;
+      const dy = s.b.y - s.a.y;
+      const distance = Math.hypot(dx, dy) || 0.001;
+      const force = (distance - s.rest) * SPRING_STRENGTH;
+      const fx = dx / distance * force;
+      const fy = dy / distance * force;
+      if (!s.a.pinned) { s.a.vx += fx * dt; s.a.vy += fy * dt; }
+      if (!s.b.pinned) { s.b.vx -= fx * dt; s.b.vy -= fy * dt; }
+    }
+
+    for (const n of nodes) {
+      if (n.pinned) { n.x = n.ox; n.y = n.oy; continue; }
+      n.vx += (n.ox - n.x) * ANCHOR_STRENGTH * dt;
+      n.vy += (n.oy - n.y) * ANCHOR_STRENGTH * dt;
+      n.vx *= Math.pow(DAMPING, dt);
+      n.vy *= Math.pow(DAMPING, dt);
+      n.x += n.vx * dt;
+      n.y += n.vy * dt;
+    }
   }
 
   function draw() {
-    const W = canvas.width, H = canvas.height;
-    ctx.clearRect(0, 0, W, H);
-    const cols = Math.ceil(W / SPACING) + 1;
-    const rows = Math.ceil(H / SPACING) + 1;
+    ctx.clearRect(0, 0, width, height);
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    ctx.lineCap = 'round';
 
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const key = `${c},${r}`;
-        const x = c * SPACING;
-        const y = r * SPACING;
-        const isCut = cut.has(key);
-        const dx = mx - x, dy = my - y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        const hover = dist < 35 && !isCut;
-
-        if (!isCut) {
-          if (c < cols-1) {
-            ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+SPACING,y);
-            ctx.strokeStyle = hover ? 'rgba(0,212,255,0.55)' : 'rgba(0,212,255,0.12)';
-            ctx.lineWidth = hover ? 1.2 : 0.6;
-            ctx.stroke();
-          }
-          if (r < rows-1) {
-            ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x,y+SPACING);
-            ctx.strokeStyle = hover ? 'rgba(0,212,255,0.55)' : 'rgba(0,212,255,0.12)';
-            ctx.lineWidth = hover ? 1.2 : 0.6;
-            ctx.stroke();
-          }
-          ctx.beginPath();
-          ctx.arc(x, y, hover ? 3.5 : 1.8, 0, Math.PI*2);
-          ctx.fillStyle = hover ? '#00d4ff' : 'rgba(0,212,255,0.28)';
-          ctx.fill();
-          if (hover) {
-            ctx.beginPath();
-            ctx.arc(x, y, 8, 0, Math.PI*2);
-            ctx.strokeStyle = 'rgba(0,212,255,0.15)';
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        } else {
-          const s = 5;
-          ctx.beginPath();
-          ctx.moveTo(x-s,y-s); ctx.lineTo(x+s,y+s);
-          ctx.moveTo(x+s,y-s); ctx.lineTo(x-s,y+s);
-          ctx.strokeStyle = 'rgba(255,80,80,0.45)';
-          ctx.lineWidth = 1.2;
-          ctx.stroke();
-        }
-      }
+    // Wide translucent pass creates a restrained electric glow.
+    ctx.beginPath();
+    for (const s of springs) {
+      if (s.broken) continue;
+      ctx.moveTo(s.a.x, s.a.y);
+      ctx.lineTo(s.b.x, s.b.y);
     }
-    requestAnimationFrame(draw);
+    ctx.strokeStyle = 'rgba(0, 174, 255, 0.035)';
+    ctx.lineWidth = 5;
+    ctx.shadowColor = '#00d4ff';
+    ctx.shadowBlur = 9;
+    ctx.stroke();
+
+    ctx.beginPath();
+    for (const s of springs) {
+      if (s.broken) continue;
+      ctx.moveTo(s.a.x, s.a.y);
+      ctx.lineTo(s.b.x, s.b.y);
+    }
+    ctx.shadowBlur = 4;
+    ctx.strokeStyle = 'rgba(0, 212, 255, 0.16)';
+    ctx.lineWidth = 0.75;
+    ctx.stroke();
+
+    for (const n of nodes) {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 1.55, 0, Math.PI * 2);
+      ctx.shadowBlur = 7;
+      ctx.fillStyle = 'rgba(70, 220, 255, 0.48)';
+      ctx.fill();
+    }
+
+    for (let i = sparks.length - 1; i >= 0; i--) {
+      const p = sparks[i];
+      p.life -= 0.045;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vx *= 0.94;
+      p.vy *= 0.94;
+      if (p.life <= 0) { sparks.splice(i, 1); continue; }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 1.8 * p.life, 0, Math.PI * 2);
+      ctx.shadowBlur = 12;
+      ctx.fillStyle = `rgba(80, 225, 255, ${p.life})`;
+      ctx.fill();
+    }
+    ctx.restore();
   }
 
-  canvas.addEventListener('mousemove', e => {
-    const r = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / r.width;
-    const scaleY = canvas.height / r.height;
-    mx = (e.clientX - r.left) * scaleX;
-    my = (e.clientY - r.top) * scaleY;
+  function pointToSegmentDistance(px, py, a, b) {
+    const dx = b.x - a.x, dy = b.y - a.y;
+    const length2 = dx * dx + dy * dy;
+    const t = length2 ? Math.max(0, Math.min(1, ((px-a.x)*dx + (py-a.y)*dy) / length2)) : 0;
+    const x = a.x + t * dx, y = a.y + t * dy;
+    return { distance:Math.hypot(px-x, py-y), x, y };
+  }
+
+  function cutNearestLine() {
+    let nearest = null;
+    let hit = null;
+    for (const s of springs) {
+      if (s.broken) continue;
+      const candidate = pointToSegmentDistance(mouse.x, mouse.y, s.a, s.b);
+      if (!hit || candidate.distance < hit.distance) { nearest = s; hit = candidate; }
+    }
+    if (!nearest || hit.distance > CUT_DISTANCE) return;
+    nearest.broken = true;
+    canvas.dataset.brokenSprings = String(Number(canvas.dataset.brokenSprings) + 1);
+
+    // The recoil makes the released tension legible immediately.
+    const dx = nearest.b.x - nearest.a.x;
+    const dy = nearest.b.y - nearest.a.y;
+    const length = Math.hypot(dx, dy) || 1;
+    if (!nearest.a.pinned) { nearest.a.vx -= dx / length * 0.7; nearest.a.vy -= dy / length * 0.7; }
+    if (!nearest.b.pinned) { nearest.b.vx += dx / length * 0.7; nearest.b.vy += dy / length * 0.7; }
+    for (let i = 0; i < 7; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 0.35 + Math.random() * 1.2;
+      sparks.push({ x:hit.x, y:hit.y, vx:Math.cos(angle)*speed, vy:Math.sin(angle)*speed, life:0.7+Math.random()*0.3 });
+    }
+  }
+
+  function frame(now) {
+    const dt = Math.min((now - lastTime) / 16.667, 1.8);
+    lastTime = now;
+    // Two smaller passes keep the spring solver calm after several cuts.
+    simulate(dt * 0.5);
+    simulate(dt * 0.5);
+    draw();
+    requestAnimationFrame(frame);
+  }
+
+  hero.addEventListener('pointermove', e => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+    cutNearestLine();
   });
 
-  canvas.addEventListener('click', e => {
-    const r = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / r.width;
-    const scaleY = canvas.height / r.height;
-    const x = (e.clientX - r.left) * scaleX;
-    const y = (e.clientY - r.top) * scaleY;
-    const cols = Math.ceil(canvas.width / SPACING) + 1;
-    const rows = Math.ceil(canvas.height / SPACING) + 1;
-    let best = null, bestDist = 999;
-    for (let r2=0; r2<rows; r2++) {
-      for (let c=0; c<cols; c++) {
-        const dx = x - c*SPACING, dy = y - r2*SPACING;
-        const d = Math.sqrt(dx*dx+dy*dy);
-        if (d < bestDist) { bestDist = d; best = `${c},${r2}`; }
-      }
-    }
-    if (best && bestDist < 30) {
-      if (cut.has(best)) cut.delete(best); else cut.add(best);
-    }
+  hero.addEventListener('pointerleave', () => {
+    mouse.x = mouse.y = -9999;
   });
 
-  canvas.addEventListener('mouseleave', () => { mx = -9999; my = -9999; });
+  // Keyboard reset is useful after experimenting without adding UI chrome.
+  window.addEventListener('keydown', e => {
+    if (e.key.toLowerCase() === 'r' && hero.matches(':hover')) buildMesh();
+  });
+
   window.addEventListener('resize', resize);
   resize();
-  draw();
+  requestAnimationFrame(frame);
 })();
 </script>
 </body>
