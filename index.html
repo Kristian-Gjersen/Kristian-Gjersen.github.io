@@ -323,47 +323,46 @@ function setLang(lang) {
   const ANCHOR_STRENGTH = 0.0018;
   const DAMPING = 0.965;
   const CUT_DISTANCE = 9;
-  const FRAME_INTERVAL = 1000 / 40;
   const nodes = [];
   const springs = [];
-  const sparks = [];
-  const pendingCuts = [];
   let cols = 0, rows = 0, width = 0, height = 0, dpr = 1;
-  let mouse = { x: -9999, y: -9999 };
-  let lastTime = performance.now();
-  let lastFrame = 0;
-  let activeUntil = performance.now() + 2800;
+  let originX = 0, originY = 0;
+  let lastPointer = null;
+  let lastCutAt = 0;
 
   function nodeAt(c, r) { return nodes[r * cols + c]; }
 
   function buildMesh() {
     nodes.length = 0;
     springs.length = 0;
-    sparks.length = 0;
-    pendingCuts.length = 0;
     canvas.dataset.brokenSprings = '0';
-    canvas.dataset.meshState = 'active';
-    activeUntil = performance.now() + 2800;
+    canvas.dataset.meshState = 'sleeping';
     cols = Math.ceil(width / SPACING) + 1;
     rows = Math.ceil(height / SPACING) + 1;
 
-    const offsetX = (width - (cols - 1) * SPACING) / 2;
-    const offsetY = (height - (rows - 1) * SPACING) / 2;
+    originX = (width - (cols - 1) * SPACING) / 2;
+    originY = (height - (rows - 1) * SPACING) / 2;
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
-        const x = offsetX + c * SPACING;
-        const y = offsetY + r * SPACING;
+        const x = originX + c * SPACING;
+        const y = originY + r * SPACING;
         const edge = c === 0 || r === 0 || c === cols - 1 || r === rows - 1;
-        nodes.push({ x, y, ox:x, oy:y, vx:0, vy:0, pinned:edge });
+        nodes.push({ x, y, ox:x, oy:y, vx:0, vy:0, pinned:edge, links:[] });
       }
     }
 
     // A rest length below the drawn spacing gives the mesh stored tension.
     const rest = SPACING * 0.88;
+    const connect = (a, b) => {
+      const spring = { a, b, rest, broken:false };
+      springs.push(spring);
+      a.links.push(spring);
+      b.links.push(spring);
+    };
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
-        if (c < cols - 1) springs.push({ a:nodeAt(c,r), b:nodeAt(c+1,r), rest, broken:false });
-        if (r < rows - 1) springs.push({ a:nodeAt(c,r), b:nodeAt(c,r+1), rest, broken:false });
+        if (c < cols - 1) connect(nodeAt(c,r), nodeAt(c+1,r));
+        if (r < rows - 1) connect(nodeAt(c,r), nodeAt(c,r+1));
       }
     }
   }
@@ -379,6 +378,7 @@ function setLang(lang) {
     canvas.height = Math.round(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     buildMesh();
+    draw();
   }
 
   function simulate(dt) {
@@ -419,10 +419,8 @@ function setLang(lang) {
       ctx.moveTo(s.a.x, s.a.y);
       ctx.lineTo(s.b.x, s.b.y);
     }
-    ctx.strokeStyle = 'rgba(0, 174, 255, 0.035)';
-    ctx.lineWidth = 5;
-    ctx.shadowColor = '#00d4ff';
-    ctx.shadowBlur = 9;
+    ctx.strokeStyle = 'rgba(0, 174, 255, 0.06)';
+    ctx.lineWidth = 4;
     ctx.stroke();
 
     ctx.beginPath();
@@ -431,7 +429,6 @@ function setLang(lang) {
       ctx.moveTo(s.a.x, s.a.y);
       ctx.lineTo(s.b.x, s.b.y);
     }
-    ctx.shadowBlur = 4;
     ctx.strokeStyle = 'rgba(0, 212, 255, 0.16)';
     ctx.lineWidth = 0.75;
     ctx.stroke();
@@ -441,24 +438,9 @@ function setLang(lang) {
       ctx.moveTo(n.x + 1.55, n.y);
       ctx.arc(n.x, n.y, 1.55, 0, Math.PI * 2);
     }
-    ctx.shadowBlur = 7;
     ctx.fillStyle = 'rgba(70, 220, 255, 0.48)';
     ctx.fill();
 
-    for (let i = sparks.length - 1; i >= 0; i--) {
-      const p = sparks[i];
-      p.life -= 0.045;
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vx *= 0.94;
-      p.vy *= 0.94;
-      if (p.life <= 0) { sparks.splice(i, 1); continue; }
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, 1.8 * p.life, 0, Math.PI * 2);
-      ctx.shadowBlur = 12;
-      ctx.fillStyle = `rgba(80, 225, 255, ${p.life})`;
-      ctx.fill();
-    }
     ctx.restore();
   }
 
@@ -473,15 +455,23 @@ function setLang(lang) {
   function cutNearestLine(point) {
     let nearest = null;
     let hit = null;
-    for (const s of springs) {
+    const nearby = new Set();
+    const centerC = Math.round((point.x - originX) / SPACING);
+    const centerR = Math.round((point.y - originY) / SPACING);
+    for (let r = centerR - 1; r <= centerR + 1; r++) {
+      for (let c = centerC - 1; c <= centerC + 1; c++) {
+        if (c < 0 || r < 0 || c >= cols || r >= rows) continue;
+        for (const spring of nodeAt(c, r).links) nearby.add(spring);
+      }
+    }
+    for (const s of nearby) {
       if (s.broken) continue;
       const candidate = pointToSegmentDistance(point.x, point.y, s.a, s.b);
       if (!hit || candidate.distance < hit.distance) { nearest = s; hit = candidate; }
     }
-    if (!nearest || hit.distance > CUT_DISTANCE) return;
+    if (!nearest || hit.distance > CUT_DISTANCE) return false;
     nearest.broken = true;
     canvas.dataset.brokenSprings = String(Number(canvas.dataset.brokenSprings) + 1);
-    activeUntil = performance.now() + 2400;
 
     // The recoil makes the released tension legible immediately.
     const dx = nearest.b.x - nearest.a.x;
@@ -489,62 +479,46 @@ function setLang(lang) {
     const length = Math.hypot(dx, dy) || 1;
     if (!nearest.a.pinned) { nearest.a.vx -= dx / length * 0.7; nearest.a.vy -= dy / length * 0.7; }
     if (!nearest.b.pinned) { nearest.b.vx += dx / length * 0.7; nearest.b.vy += dy / length * 0.7; }
-    for (let i = 0; i < 7; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = 0.35 + Math.random() * 1.2;
-      sparks.push({ x:hit.x, y:hit.y, vx:Math.cos(angle)*speed, vy:Math.sin(angle)*speed, life:0.7+Math.random()*0.3 });
-    }
+    if (reducedMotion) draw(); else settleMesh();
+    return true;
   }
 
-  function frame(now) {
-    requestAnimationFrame(frame);
-    if (now - lastFrame < FRAME_INTERVAL) return;
-    lastFrame = now;
-
-    while (pendingCuts.length) cutNearestLine(pendingCuts.shift());
-    const active = now < activeUntil || sparks.length > 0;
-    if (!active) {
-      canvas.dataset.meshState = 'sleeping';
-      lastTime = now;
-      return;
-    }
-    canvas.dataset.meshState = 'active';
-
-    const dt = Math.min((now - lastTime) / 16.667, 1.8);
-    lastTime = now;
-    // Two smaller passes keep the spring solver calm after several cuts.
-    simulate(dt * 0.5);
-    simulate(dt * 0.5);
+  function settleMesh() {
+    canvas.dataset.meshState = 'updating';
+    // Resolve the spring response in one tiny calculation burst. There is no
+    // animation loop, so the rest of the page always remains immediately free.
+    for (let i = 0; i < 18; i++) simulate(0.55);
     draw();
+    canvas.dataset.meshState = 'sleeping';
   }
 
   hero.addEventListener('pointermove', e => {
+    if (e.pointerType === 'touch') return;
     const rect = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-    // Queue a few recent samples and perform the expensive hit test once per
-    // animation frame instead of once for every high-frequency pointer event.
     const events = e.getCoalescedEvents ? e.getCoalescedEvents() : [];
     if (!events.length) events.push(e);
-    for (const event of events) {
-      pendingCuts.push({ x:event.clientX - rect.left, y:event.clientY - rect.top });
-    }
-    if (pendingCuts.length > 6) pendingCuts.splice(0, pendingCuts.length - 6);
-    activeUntil = performance.now() + 500;
+    const event = events[events.length - 1];
+    const point = { x:event.clientX - rect.left, y:event.clientY - rect.top };
+    if (!lastPointer) { lastPointer = point; return; }
+    const moved = Math.hypot(point.x - lastPointer.x, point.y - lastPointer.y);
+    lastPointer = point;
+    const now = performance.now();
+    if (moved < 3 || now - lastCutAt < 45) return;
+    if (cutNearestLine(point)) lastCutAt = now;
   });
 
-  hero.addEventListener('pointerleave', () => {
-    mouse.x = mouse.y = -9999;
-  });
+  hero.addEventListener('pointerleave', () => { lastPointer = null; });
 
   // Keyboard reset is useful after experimenting without adding UI chrome.
   window.addEventListener('keydown', e => {
-    if (e.key.toLowerCase() === 'r' && hero.matches(':hover')) buildMesh();
+    if (e.key.toLowerCase() === 'r' && hero.matches(':hover')) {
+      buildMesh();
+      draw();
+    }
   });
 
   window.addEventListener('resize', resize);
   resize();
-  requestAnimationFrame(frame);
 })();
 </script>
 </body>
