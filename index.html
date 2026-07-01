@@ -321,18 +321,26 @@ function setLang(lang) {
   const SPACING = 58;
   const SPRING_STRENGTH = 0.021;
   const ANCHOR_STRENGTH = 0.0018;
-  const DAMPING = 0.965;
+  const DAMPING = 0.90;
   const CUT_DISTANCE = 9;
+  const FRAME_INTERVAL = 1000 / 30;
   const nodes = [];
   const springs = [];
   let cols = 0, rows = 0, width = 0, height = 0, dpr = 1;
   let originX = 0, originY = 0;
   let lastPointer = null;
   let lastCutAt = 0;
+  let animationId = 0;
+  let animationStarted = 0;
+  let lastFrame = 0;
+  let lastTime = 0;
+  let settledFrames = 0;
 
   function nodeAt(c, r) { return nodes[r * cols + c]; }
 
   function buildMesh() {
+    if (animationId) cancelAnimationFrame(animationId);
+    animationId = 0;
     nodes.length = 0;
     springs.length = 0;
     canvas.dataset.brokenSprings = '0';
@@ -479,17 +487,56 @@ function setLang(lang) {
     const length = Math.hypot(dx, dy) || 1;
     if (!nearest.a.pinned) { nearest.a.vx -= dx / length * 0.7; nearest.a.vy -= dy / length * 0.7; }
     if (!nearest.b.pinned) { nearest.b.vx += dx / length * 0.7; nearest.b.vy += dy / length * 0.7; }
-    if (reducedMotion) draw(); else settleMesh();
+    if (reducedMotion) draw(); else wakeMesh();
     return true;
   }
 
-  function settleMesh() {
-    canvas.dataset.meshState = 'updating';
-    // Resolve the spring response in one tiny calculation burst. There is no
-    // animation loop, so the rest of the page always remains immediately free.
-    for (let i = 0; i < 18; i++) simulate(0.55);
+  function wakeMesh() {
+    const now = performance.now();
+    animationStarted = now;
+    settledFrames = 0;
+    canvas.dataset.meshState = 'active';
+    if (!animationId) {
+      lastTime = now;
+      lastFrame = 0;
+      animationId = requestAnimationFrame(animateMesh);
+    }
+  }
+
+  function animateMesh(now) {
+    animationId = 0;
+    if (now - lastFrame < FRAME_INTERVAL) {
+      animationId = requestAnimationFrame(animateMesh);
+      return;
+    }
+    const dt = Math.min((now - lastTime) / 16.667, 2);
+    lastTime = now;
+    lastFrame = now;
+    simulate(dt);
     draw();
-    canvas.dataset.meshState = 'sleeping';
+
+    let maxSpeed = 0;
+    for (const n of nodes) {
+      if (!n.pinned) maxSpeed = Math.max(maxSpeed, Math.hypot(n.vx, n.vy));
+    }
+    settledFrames = maxSpeed < 0.018 ? settledFrames + 1 : 0;
+
+    if (settledFrames >= 5) {
+      canvas.dataset.meshState = 'sleeping';
+      return;
+    }
+
+    if (now - animationStarted > 2200) {
+      // Finish the remaining tiny motion off-screen rather than freezing the
+      // mesh between positions when the safety limit is reached.
+      for (let i = 0; i < 28; i++) simulate(0.45);
+      for (const n of nodes) { n.vx = 0; n.vy = 0; }
+      draw();
+      canvas.dataset.meshState = 'sleeping';
+      return;
+    }
+
+    animationId = requestAnimationFrame(animateMesh);
   }
 
   hero.addEventListener('pointermove', e => {
