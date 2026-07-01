@@ -20,7 +20,8 @@
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
 
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2.5rem;background:rgba(10,14,26,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    /* Nav */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2.5rem;background:rgba(10,14,26,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
     .nav-logo{font-family:var(--mono);font-size:.85rem;color:var(--accent);letter-spacing:.05em}
     .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
     .nav-links a{font-size:.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;transition:color .2s}
@@ -32,75 +33,96 @@
     .print-btn{font-family:var(--mono);font-size:.75rem;background:var(--accent);border:none;color:#000;padding:6px 16px;border-radius:4px;cursor:pointer;font-weight:700;letter-spacing:.05em;transition:opacity .2s}
     .print-btn:hover{opacity:.85}
 
-    .grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
-
-    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 2.5rem 4rem;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+    /* Hero with canvas */
+    .hero-wrap{position:relative;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+    #grid-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+    .hero{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:8rem 2.5rem 4rem;width:100%}
     .hero-eyebrow{font-family:var(--mono);font-size:.78rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
     .hero-eyebrow::before{content:'';display:inline-block;width:32px;height:1px;background:var(--accent)}
     h1{font-size:clamp(2.8rem,6vw,5rem);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-bottom:1rem}
-    .hero-title-accent{color:var(--accent)}
-    .hero-sub{font-size:1.1rem;color:var(--muted);max-width:560px;margin-bottom:2.5rem;line-height:1.8}
-    .hero-contacts{display:flex;flex-wrap:wrap;gap:1.5rem;margin-bottom:3rem}
-    .hero-contact-item{font-family:var(--mono);font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:.5rem}
-    .hero-contact-item a{color:var(--muted)}
-    .hero-contact-item a:hover{color:var(--accent)}
-    .icon{color:var(--accent);font-size:.9rem}
+    .accent{color:var(--accent)}
+    .hero-sub{font-size:1.05rem;color:var(--muted);max-width:560px;margin-bottom:2.5rem;line-height:1.8}
+    .hero-contacts{display:flex;flex-wrap:wrap;gap:1.5rem;margin-bottom:1rem}
+    .contact-item{font-family:var(--mono);font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:.5rem}
+    .contact-item a{color:var(--muted)}
+    .contact-item a:hover{color:var(--accent)}
+    .ci{color:var(--accent)}
+    .hint{font-family:var(--mono);font-size:.68rem;color:rgba(107,142,181,.5);margin-top:2rem}
 
+    /* Sections */
     section{max-width:1100px;margin:0 auto;padding:5rem 2.5rem;position:relative;z-index:1}
     .section-label{font-family:var(--mono);font-size:.72rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:.75rem}
     .section-label::before{content:'';display:inline-block;width:24px;height:1px;background:var(--accent)}
     h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;letter-spacing:-.02em;margin-bottom:2.5rem}
     .divider{border:none;border-top:1px solid var(--border);margin:0 2.5rem}
 
+    /* Education */
+    .edu-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.75rem 2rem}
+    .edu-period{font-family:var(--mono);font-size:.75rem;color:var(--accent);margin-bottom:.5rem}
+    .edu-title{font-size:1.15rem;font-weight:700;margin-bottom:.25rem}
+    .edu-inst{font-size:.88rem;color:var(--muted);margin-bottom:1rem}
+    .edu-desc{font-size:.9rem;color:var(--muted);line-height:1.8}
+
+    /* Projects */
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+    .project-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:border-color .2s,transform .2s;display:flex;flex-direction:column;gap:.75rem}
+    .project-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+    .project-card.placeholder{border-style:dashed;opacity:.5}
+    .project-card.placeholder:hover{opacity:.8}
+    .ptag{display:inline-block;font-family:var(--mono);font-size:.68rem;background:rgba(0,212,255,.1);color:var(--accent);border:1px solid rgba(0,212,255,.2);padding:2px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:.08em}
+    .ptag.pub{background:rgba(0,229,160,.1);color:var(--green);border-color:rgba(0,229,160,.2)}
+    .ptag.future{background:rgba(107,142,181,.08);color:var(--muted);border-color:rgba(107,142,181,.2)}
+    .project-title{font-size:1rem;font-weight:700;line-height:1.4}
+    .project-desc{font-size:.85rem;color:var(--muted);line-height:1.7;flex:1}
+    .techs{display:flex;flex-wrap:wrap;gap:.4rem}
+    .tech{font-family:var(--mono);font-size:.68rem;background:var(--surface2);border:1px solid var(--border);color:var(--muted);padding:2px 8px;border-radius:3px}
+
+    /* Media placeholder */
+    .media-placeholder{background:var(--surface2);border:1px solid var(--border);border-radius:6px;height:160px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.75rem;color:var(--muted);flex-direction:column;gap:.5rem}
+
+    /* Skills */
     .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
     .skill-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;transition:border-color .2s,transform .2s}
     .skill-card:hover{border-color:var(--accent);transform:translateY(-2px)}
     .skill-name{font-family:var(--mono);font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:.4rem}
-    .skill-level-bar{height:3px;background:var(--surface2);border-radius:2px;overflow:hidden;margin-bottom:.3rem}
-    .skill-level-fill{height:100%;background:var(--accent);border-radius:2px}
-    .skill-level-label{font-size:.7rem;color:var(--muted);font-family:var(--mono)}
+    .bar-track{height:3px;background:var(--surface2);border-radius:2px;overflow:hidden;margin-bottom:.3rem}
+    .bar-fill{height:100%;background:var(--accent);border-radius:2px}
+    .skill-lbl{font-size:.7rem;color:var(--muted);font-family:var(--mono)}
 
-    .edu-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.75rem 2rem}
-    .edu-period{font-family:var(--mono);font-size:.75rem;color:var(--accent);margin-bottom:.5rem}
-    .edu-title{font-size:1.15rem;font-weight:700;margin-bottom:.25rem}
-    .edu-institution{font-size:.88rem;color:var(--muted);margin-bottom:1rem}
-    .edu-desc{font-size:.9rem;color:var(--muted);line-height:1.8}
-
-    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.25rem}
-    .project-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:border-color .2s,transform .2s;display:flex;flex-direction:column;gap:.75rem}
-    .project-card:hover{border-color:var(--accent);transform:translateY(-3px)}
-    .project-tag{display:inline-block;font-family:var(--mono);font-size:.68rem;background:rgba(0,212,255,.1);color:var(--accent);border:1px solid rgba(0,212,255,.2);padding:2px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:.08em}
-    .project-tag.publication{background:rgba(0,229,160,.1);color:var(--green);border-color:rgba(0,229,160,.2)}
-    .project-title{font-size:1rem;font-weight:700;line-height:1.4}
-    .project-desc{font-size:.85rem;color:var(--muted);line-height:1.7;flex:1}
-    .project-techs{display:flex;flex-wrap:wrap;gap:.4rem}
-    .tech-pill{font-family:var(--mono);font-size:.68rem;background:var(--surface2);border:1px solid var(--border);color:var(--muted);padding:2px 8px;border-radius:3px}
-
+    /* Languages */
     .lang-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
     .lang-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem}
     .lang-name{font-size:1rem;font-weight:700;margin-bottom:.3rem}
     .lang-level{font-family:var(--mono);font-size:.75rem;color:var(--green)}
 
-    .qualities-grid{display:flex;flex-wrap:wrap;gap:.6rem}
-    .quality-pill{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:.4rem 1rem;font-size:.85rem;transition:border-color .2s}
-    .quality-pill:hover{border-color:var(--accent)}
+    /* Pills */
+    .pills{display:flex;flex-wrap:wrap;gap:.6rem}
+    .pill{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:.4rem 1rem;font-size:.85rem;transition:border-color .2s}
+    .pill:hover{border-color:var(--accent)}
+
+    /* Subheading */
+    .subh{font-size:1.1rem;font-weight:700;margin-bottom:1rem;margin-top:2rem}
 
     footer{text-align:center;padding:2rem;font-family:var(--mono);font-size:.75rem;color:var(--muted);border-top:1px solid var(--border);position:relative;z-index:1}
 
+    /* Lang toggle */
     body.lang-en [data-da]{display:none!important}
     body.lang-da [data-en]{display:none!important}
 
+    /* Print */
     @media print {
       *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
       :root{--bg:#fff;--surface:#f8f9fa;--surface2:#eef0f3;--border:#d0d7e3;--accent:#0055aa;--accent2:#0055aa;--text:#111;--muted:#555;--green:#007a50}
-      .grid-bg,nav{display:none!important}
+      #grid-canvas,nav,.hint{display:none!important}
       body{background:#fff;color:#111;font-size:11pt}
-      .hero{min-height:unset;padding:1.5cm 0 1cm;page-break-after:avoid}
+      .hero-wrap{min-height:unset}
+      .hero{padding:1.5cm 0 1cm}
       h1{font-size:28pt}
       .hero-sub{font-size:10pt}
       section{padding:.6cm 0;page-break-inside:avoid}
       .skill-card,.project-card,.edu-card,.lang-card{border:1px solid #ccc;break-inside:avoid}
       .project-card:hover,.skill-card:hover{transform:none}
+      .media-placeholder{display:none}
       footer{display:none}
       @page{margin:1.5cm 2cm;size:A4}
     }
@@ -115,8 +137,8 @@
   </style>
 </head>
 <body class="lang-da">
-<div class="grid-bg"></div>
 
+<!-- Nav -->
 <nav>
   <span class="nav-logo">KG.dev</span>
   <ul class="nav-links">
@@ -132,21 +154,31 @@
   </div>
 </nav>
 
-<div class="hero">
-  <p class="hero-eyebrow"><span data-da>Civilingeniør i Robotteknologi</span><span data-en>MSc Robotics Systems Engineer</span></p>
-  <h1>Kristian<br/><span class="hero-title-accent">Gjersen</span></h1>
-  <p class="hero-sub" data-da>Civilingeniørstuderende i robotteknologi fra SDU med bred teknisk forståelse inden for mekanik, elektronik, programmering og AI. Specialiseret i bio-inspirerede robotter og autonome systemer.</p>
-  <p class="hero-sub" data-en>Robotics Systems Engineering student at SDU with broad technical expertise spanning mechanics, electronics, programming and AI. Specialising in bio-inspired robots and autonomous systems.</p>
-  <div class="hero-contacts">
-    <span class="hero-contact-item"><span class="icon">📍</span> Odense SØ, Danmark</span>
-    <span class="hero-contact-item"><span class="icon">📞</span> +45 21 75 81 85</span>
-    <span class="hero-contact-item"><span class="icon">✉</span> <a href="mailto:Gjersen2@gmail.com">Gjersen2@gmail.com</a></span>
-    <span class="hero-contact-item"><span class="icon">🔗</span> <a href="https://www.linkedin.com/in/kristian-gjersen-246243348/" target="_blank">LinkedIn</a></span>
+<!-- Hero with interactive grid -->
+<div class="hero-wrap">
+  <canvas id="grid-canvas"></canvas>
+  <div class="hero">
+    <p class="hero-eyebrow">
+      <span data-da>Civilingeniør i Robotteknologi</span>
+      <span data-en>MSc Robotics Systems Engineer</span>
+    </p>
+    <h1>Kristian<br/><span class="accent">Gjersen</span></h1>
+    <p class="hero-sub" data-da>Civilingeniørstuderende i robotteknologi fra SDU med bred teknisk forståelse inden for mekanik, elektronik, programmering og AI. Specialiseret i bio-inspirerede robotter og autonome systemer.</p>
+    <p class="hero-sub" data-en>Robotics Systems Engineering student at SDU with broad technical expertise spanning mechanics, electronics, programming and AI. Specialising in bio-inspired robots and autonomous systems.</p>
+    <div class="hero-contacts">
+      <span class="contact-item"><span class="ci">📍</span> Odense SØ, Danmark</span>
+      <span class="contact-item"><span class="ci">📞</span> +45 21 75 81 85</span>
+      <span class="contact-item"><span class="ci">✉</span> <a href="mailto:Gjersen2@gmail.com">Gjersen2@gmail.com</a></span>
+      <span class="contact-item"><span class="ci">🔗</span> <a href="https://www.linkedin.com/in/kristian-gjersen-246243348/" target="_blank">LinkedIn</a></span>
+    </div>
+    <p class="hint" data-da>// bevæg musen for at aktivere — klik for at klippe knudepunkter</p>
+    <p class="hint" data-en>// hover to activate — click to cut intersections</p>
   </div>
 </div>
 
 <hr class="divider"/>
 
+<!-- Education -->
 <section id="education">
   <p class="section-label" data-da>Uddannelse</p><p class="section-label" data-en>Education</p>
   <h2 data-da>Akademisk baggrund</h2><h2 data-en>Academic Background</h2>
@@ -154,78 +186,106 @@
     <p class="edu-period">2020 – 2026</p>
     <p class="edu-title" data-da>Civilingeniør i Robotteknologi (Kandidatuddannelse)</p>
     <p class="edu-title" data-en>MSc Robotics Systems (Civil Engineer)</p>
-    <p class="edu-institution">Syddansk Universitet (SDU) — Odense</p>
-    <p class="edu-desc" data-da>Bred teknisk forståelse for udvikling af robotsystemer — fra programmering, elektronik, mekanik og regulering til kunstig intelligens, computer vision og avanceret robotstyring. Arbejdet med robotkinematik, signalbehandling, numeriske metoder, statistik, image processing, soft robotics og embodied AI. Uddannelsen har udviklet evnen til at analysere komplekse tekniske problemstillinger og arbejde projektorienteret fra idé til færdig prototype.</p>
-    <p class="edu-desc" data-en>Broad technical understanding of robotic systems development — spanning programming, electronics, mechanics and control theory through to artificial intelligence, computer vision and advanced robot control. Topics include robot kinematics, signal processing, numerical methods, statistics, image processing, soft robotics and embodied AI. Trained to analyse complex engineering problems and work project-oriented from concept to finished prototype.</p>
+    <p class="edu-inst">Syddansk Universitet (SDU) — Odense</p>
+    <p class="edu-desc" data-da>Bred teknisk forståelse for udvikling af robotsystemer — fra programmering, elektronik, mekanik og regulering til kunstig intelligens, computer vision og avanceret robotstyring. Arbejdet med robotkinematik, signalbehandling, numeriske metoder, statistik, image processing, soft robotics og embodied AI. Uddannelsen har udviklet evnen til at analysere komplekse tekniske problemstillinger og arbejde projektorienteret og tværfagligt fra idé til færdig prototype.</p>
+    <p class="edu-desc" data-en>Broad technical understanding of robotic systems development — spanning programming, electronics, mechanics and control theory through to AI, computer vision and advanced robot control. Covering robot kinematics, signal processing, numerical methods, statistics, image processing, soft robotics and embodied AI. Trained to analyse complex engineering problems and work project-oriented and cross-disciplinary from concept to finished prototype.</p>
   </div>
 </section>
 
 <hr class="divider"/>
 
+<!-- Projects -->
 <section id="projects">
   <p class="section-label" data-da>Projekter</p><p class="section-label" data-en>Projects</p>
   <h2 data-da>Udvalgte projekter</h2><h2 data-en>Selected Projects</h2>
   <div class="projects-grid">
+
+    <!-- Cuttlefish robot -->
     <div class="project-card">
-      <span class="project-tag publication" data-da>📄 Til publicering</span>
-      <span class="project-tag publication" data-en>📄 Pending Publication</span>
+      <span class="ptag pub" data-da>📄 Til publicering</span>
+      <span class="ptag pub" data-en>📄 Pending Publication</span>
       <p class="project-title" data-da>Blæksprutte-inspireret modulær blød robot</p>
       <p class="project-title" data-en>Cuttlefish-Inspired Modular Soft Robot</p>
-      <p class="project-desc" data-da>Masterspeciale og forskningsartikel til journal-publicering. Designede og byggede en bio-inspireret modulær undervands-robot med laterale bølgefinner, kamakselmekanisme, senetrukket styring og trådløs drift. Opnåede 3,6 cm/s fremad-svømning og demonstrerede stabil kursstyring og differential-drev manøvrering.</p>
+      <div class="media-placeholder">
+        <span>🎥</span>
+        <span data-da>Video / billeder kommer snart</span>
+        <span data-en>Video / images coming soon</span>
+      </div>
+      <p class="project-desc" data-da>Masterspeciale og forskningsartikel til journal-publicering. Designede og byggede en bio-inspireret modulær undervands-robot med laterale bølgefinner, kamakselmekanisme, senetrukket styring og trådløs drift. Opnåede 3,6 cm/s fremad-svømning med stabil kursstyring og differential-drev manøvrering.</p>
       <p class="project-desc" data-en>Master's thesis and research paper submitted for journal publication. Designed and built a bio-inspired modular underwater robot with lateral undulatory fins, eccentric camshaft mechanism, tendon-driven steering and wireless untethered operation. Achieved 3.6 cm/s forward swimming with stable head-steering and differential-drive manoeuvring.</p>
-      <div class="project-techs">
-        <span class="tech-pill">Soft Robotics</span><span class="tech-pill">3D Print</span>
-        <span class="tech-pill">Silicone Fabrication</span><span class="tech-pill">Embedded Systems</span>
-        <span class="tech-pill">Computer Vision</span><span class="tech-pill">MATLAB</span>
+      <div class="techs">
+        <span class="tech">Soft Robotics</span><span class="tech">3D Print</span>
+        <span class="tech">Silicone Fabrication</span><span class="tech">Embedded Systems</span>
+        <span class="tech">Computer Vision</span><span class="tech">MATLAB</span>
       </div>
     </div>
-    <div class="project-card">
-      <span class="project-tag" data-da>🏠 Personligt projekt</span>
-      <span class="project-tag" data-en>🏠 Personal Project</span>
-      <p class="project-title" data-da>Selvhostet personligt dashboard — Raspberry Pi</p>
-      <p class="project-title" data-en>Self-Hosted Personal Dashboard — Raspberry Pi</p>
-      <p class="project-desc" data-da>Fuldt selvhostet dashboard kørende på Raspberry Pi Zero 2 W med kalender, opgaveliste, diætsporing og budgetstyring. Tilgængeligt globalt via Tailscale VPN, auto-start via systemd og versionsstyret med Git.</p>
-      <p class="project-desc" data-en>Fully self-hosted dashboard running on a Raspberry Pi Zero 2 W featuring calendar integration, to-do list, diet tracking and budget management. Globally accessible via Tailscale VPN, auto-starts via systemd, version-controlled with Git.</p>
-      <div class="project-techs">
-        <span class="tech-pill">Python</span><span class="tech-pill">Flask</span>
-        <span class="tech-pill">HTML & CSS</span><span class="tech-pill">Linux</span>
-        <span class="tech-pill">Raspberry Pi</span><span class="tech-pill">Git</span>
+
+    <!-- Placeholder 1 -->
+    <div class="project-card placeholder">
+      <span class="ptag future" data-da>🔧 Kommende projekt</span>
+      <span class="ptag future" data-en>🔧 Upcoming project</span>
+      <p class="project-title" data-da>Næste projekt</p>
+      <p class="project-title" data-en>Next project</p>
+      <div class="media-placeholder">
+        <span>📷</span>
+        <span data-da>Billeder / video tilføjes</span>
+        <span data-en>Images / video to be added</span>
       </div>
+      <p class="project-desc" data-da>Beskriv dit næste projekt her — tilføj billeder, video og tekst.</p>
+      <p class="project-desc" data-en>Describe your next project here — add images, video and text.</p>
     </div>
+
+    <!-- Placeholder 2 -->
+    <div class="project-card placeholder">
+      <span class="ptag future" data-da>🔧 Kommende projekt</span>
+      <span class="ptag future" data-en>🔧 Upcoming project</span>
+      <p class="project-title" data-da>Næste projekt</p>
+      <p class="project-title" data-en>Next project</p>
+      <div class="media-placeholder">
+        <span>📷</span>
+        <span data-da>Billeder / video tilføjes</span>
+        <span data-en>Images / video to be added</span>
+      </div>
+      <p class="project-desc" data-da>Beskriv dit næste projekt her — tilføj billeder, video og tekst.</p>
+      <p class="project-desc" data-en>Describe your next project here — add images, video and text.</p>
+    </div>
+
   </div>
 </section>
 
 <hr class="divider"/>
 
+<!-- Skills -->
 <section id="skills">
   <p class="section-label" data-da>Kompetencer</p><p class="section-label" data-en>Skills</p>
   <h2 data-da>Tekniske færdigheder</h2><h2 data-en>Technical Skills</h2>
   <div class="skills-grid">
-    <div class="skill-card"><p class="skill-name">Python</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:95%"></div></div><p class="skill-level-label" data-da>Ekspert</p><p class="skill-level-label" data-en>Expert</p></div>
-    <div class="skill-card"><p class="skill-name">LaTeX</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:95%"></div></div><p class="skill-level-label" data-da>Ekspert</p><p class="skill-level-label" data-en>Expert</p></div>
-    <div class="skill-card"><p class="skill-name">MATLAB</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:75%"></div></div><p class="skill-level-label" data-da>Øvet</p><p class="skill-level-label" data-en>Proficient</p></div>
-    <div class="skill-card"><p class="skill-name">C / C++</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:75%"></div></div><p class="skill-level-label" data-da>Øvet</p><p class="skill-level-label" data-en>Proficient</p></div>
-    <div class="skill-card"><p class="skill-name">HTML & CSS</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:80%"></div></div><p class="skill-level-label" data-da>Avanceret</p><p class="skill-level-label" data-en>Advanced</p></div>
-    <div class="skill-card"><p class="skill-name">SQL</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:50%"></div></div><p class="skill-level-label" data-da>Let øvet</p><p class="skill-level-label" data-en>Beginner–Intermediate</p></div>
-    <div class="skill-card"><p class="skill-name">Java</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:45%"></div></div><p class="skill-level-label" data-da>Let øvet</p><p class="skill-level-label" data-en>Beginner–Intermediate</p></div>
-    <div class="skill-card"><p class="skill-name">Assembly / VHDL</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:45%"></div></div><p class="skill-level-label" data-da>Let øvet</p><p class="skill-level-label" data-en>Beginner–Intermediate</p></div>
+    <div class="skill-card"><p class="skill-name">Python</p><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div><p class="skill-lbl" data-da>Ekspert</p><p class="skill-lbl" data-en>Expert</p></div>
+    <div class="skill-card"><p class="skill-name">LaTeX</p><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div><p class="skill-lbl" data-da>Ekspert</p><p class="skill-lbl" data-en>Expert</p></div>
+    <div class="skill-card"><p class="skill-name">MATLAB</p><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div><p class="skill-lbl" data-da>Øvet</p><p class="skill-lbl" data-en>Proficient</p></div>
+    <div class="skill-card"><p class="skill-name">C / C++</p><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div><p class="skill-lbl" data-da>Øvet</p><p class="skill-lbl" data-en>Proficient</p></div>
+    <div class="skill-card"><p class="skill-name">HTML & CSS</p><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><p class="skill-lbl" data-da>Avanceret</p><p class="skill-lbl" data-en>Advanced</p></div>
+    <div class="skill-card"><p class="skill-name">SQL</p><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><p class="skill-lbl" data-da>Let øvet</p><p class="skill-lbl" data-en>Beginner–Intermediate</p></div>
+    <div class="skill-card"><p class="skill-name">Java</p><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div><p class="skill-lbl" data-da>Let øvet</p><p class="skill-lbl" data-en>Beginner–Intermediate</p></div>
+    <div class="skill-card"><p class="skill-name">Assembly / VHDL</p><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div><p class="skill-lbl" data-da>Let øvet</p><p class="skill-lbl" data-en>Beginner–Intermediate</p></div>
   </div>
-  <br/>
-  <h2 style="font-size:1.1rem;margin-bottom:1rem;margin-top:1rem" data-da>Personlige egenskaber</h2>
-  <h2 style="font-size:1.1rem;margin-bottom:1rem;margin-top:1rem" data-en>Personal Qualities</h2>
-  <div class="qualities-grid">
-    <span class="quality-pill" data-da>Grundig & kvalitetsbevidst</span><span class="quality-pill" data-en>Thorough & quality-conscious</span>
-    <span class="quality-pill" data-da>Analytisk & struktureret</span><span class="quality-pill" data-en>Analytical & structured</span>
-    <span class="quality-pill" data-da>Samarbejdsorienteret</span><span class="quality-pill" data-en>Collaborative</span>
-    <span class="quality-pill" data-da>Ansvarsbevidst</span><span class="quality-pill" data-en>Responsible & reliable</span>
-    <span class="quality-pill" data-da>Teknisk problemløsning</span><span class="quality-pill" data-en>Technical problem-solving</span>
-    <span class="quality-pill" data-da>Projektorienteret</span><span class="quality-pill" data-en>Project-oriented</span>
-    <span class="quality-pill" data-da>Interesse for AI & automatisering</span><span class="quality-pill" data-en>Passion for AI & automation</span>
+
+  <p class="subh" data-da>Personlige egenskaber</p>
+  <p class="subh" data-en>Personal Qualities</p>
+  <div class="pills">
+    <span class="pill" data-da>Grundig & kvalitetsbevidst</span><span class="pill" data-en>Thorough & quality-conscious</span>
+    <span class="pill" data-da>Analytisk & struktureret</span><span class="pill" data-en>Analytical & structured</span>
+    <span class="pill" data-da>Samarbejdsorienteret</span><span class="pill" data-en>Collaborative</span>
+    <span class="pill" data-da>Ansvarsbevidst</span><span class="pill" data-en>Responsible & reliable</span>
+    <span class="pill" data-da>Teknisk problemløsning</span><span class="pill" data-en>Technical problem-solving</span>
+    <span class="pill" data-da>Projektorienteret</span><span class="pill" data-en>Project-oriented</span>
+    <span class="pill" data-da>Interesse for AI & automatisering</span><span class="pill" data-en>Passion for AI & automation</span>
   </div>
 </section>
 
 <hr class="divider"/>
 
+<!-- Languages -->
 <section id="languages">
   <p class="section-label" data-da>Sprog</p><p class="section-label" data-en>Languages</p>
   <h2 data-da>Sprogkundskaber</h2><h2 data-en>Language Skills</h2>
@@ -233,12 +293,9 @@
     <div class="lang-card"><p class="lang-name" data-da>Dansk</p><p class="lang-name" data-en>Danish</p><p class="lang-level" data-da>Modersmål</p><p class="lang-level" data-en>Native</p></div>
     <div class="lang-card"><p class="lang-name" data-da>Engelsk</p><p class="lang-name" data-en>English</p><p class="lang-level" data-da>Flydende</p><p class="lang-level" data-en>Fluent</p></div>
   </div>
-  <br/>
-  <h2 style="font-size:1.1rem;margin-bottom:1rem;margin-top:1rem" data-da>Kørekort</h2>
-  <h2 style="font-size:1.1rem;margin-bottom:1rem;margin-top:1rem" data-en>Driving Licence</h2>
-  <div class="qualities-grid">
-    <span class="quality-pill">🚗 <span data-da>Kategori B</span><span data-en>Category B</span></span>
-  </div>
+  <p class="subh" data-da>Kørekort</p>
+  <p class="subh" data-en>Driving Licence</p>
+  <div class="pills"><span class="pill">🚗 <span data-da>Kategori B</span><span data-en>Category B</span></span></div>
 </section>
 
 <footer>
@@ -247,12 +304,114 @@
 </footer>
 
 <script>
-  function setLang(lang) {
-    document.body.className = 'lang-' + lang;
-    document.getElementById('btn-da').classList.toggle('active', lang === 'da');
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    document.documentElement.lang = lang;
+function setLang(lang) {
+  document.body.className = 'lang-' + lang;
+  document.getElementById('btn-da').classList.toggle('active', lang === 'da');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.documentElement.lang = lang;
+}
+
+// Interactive electric grid
+(function() {
+  const canvas = document.getElementById('grid-canvas');
+  const ctx = canvas.getContext('2d');
+  const cut = new Set();
+  let mx = -9999, my = -9999;
+  const SPACING = 50;
+
+  function resize() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
   }
+
+  function draw() {
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+    const cols = Math.ceil(W / SPACING) + 1;
+    const rows = Math.ceil(H / SPACING) + 1;
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const key = `${c},${r}`;
+        const x = c * SPACING;
+        const y = r * SPACING;
+        const isCut = cut.has(key);
+        const dx = mx - x, dy = my - y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        const hover = dist < 35 && !isCut;
+
+        if (!isCut) {
+          if (c < cols-1) {
+            ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+SPACING,y);
+            ctx.strokeStyle = hover ? 'rgba(0,212,255,0.55)' : 'rgba(0,212,255,0.12)';
+            ctx.lineWidth = hover ? 1.2 : 0.6;
+            ctx.stroke();
+          }
+          if (r < rows-1) {
+            ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x,y+SPACING);
+            ctx.strokeStyle = hover ? 'rgba(0,212,255,0.55)' : 'rgba(0,212,255,0.12)';
+            ctx.lineWidth = hover ? 1.2 : 0.6;
+            ctx.stroke();
+          }
+          ctx.beginPath();
+          ctx.arc(x, y, hover ? 3.5 : 1.8, 0, Math.PI*2);
+          ctx.fillStyle = hover ? '#00d4ff' : 'rgba(0,212,255,0.28)';
+          ctx.fill();
+          if (hover) {
+            ctx.beginPath();
+            ctx.arc(x, y, 8, 0, Math.PI*2);
+            ctx.strokeStyle = 'rgba(0,212,255,0.15)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        } else {
+          const s = 5;
+          ctx.beginPath();
+          ctx.moveTo(x-s,y-s); ctx.lineTo(x+s,y+s);
+          ctx.moveTo(x+s,y-s); ctx.lineTo(x-s,y+s);
+          ctx.strokeStyle = 'rgba(255,80,80,0.45)';
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  canvas.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / r.width;
+    const scaleY = canvas.height / r.height;
+    mx = (e.clientX - r.left) * scaleX;
+    my = (e.clientY - r.top) * scaleY;
+  });
+
+  canvas.addEventListener('click', e => {
+    const r = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / r.width;
+    const scaleY = canvas.height / r.height;
+    const x = (e.clientX - r.left) * scaleX;
+    const y = (e.clientY - r.top) * scaleY;
+    const cols = Math.ceil(canvas.width / SPACING) + 1;
+    const rows = Math.ceil(canvas.height / SPACING) + 1;
+    let best = null, bestDist = 999;
+    for (let r2=0; r2<rows; r2++) {
+      for (let c=0; c<cols; c++) {
+        const dx = x - c*SPACING, dy = y - r2*SPACING;
+        const d = Math.sqrt(dx*dx+dy*dy);
+        if (d < bestDist) { bestDist = d; best = `${c},${r2}`; }
+      }
+    }
+    if (best && bestDist < 30) {
+      if (cut.has(best)) cut.delete(best); else cut.add(best);
+    }
+  });
+
+  canvas.addEventListener('mouseleave', () => { mx = -9999; my = -9999; });
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
 </script>
 </body>
 </html>
