@@ -323,12 +323,16 @@ function setLang(lang) {
   const ANCHOR_STRENGTH = 0.0018;
   const DAMPING = 0.965;
   const CUT_DISTANCE = 9;
+  const FRAME_INTERVAL = 1000 / 40;
   const nodes = [];
   const springs = [];
   const sparks = [];
+  const pendingCuts = [];
   let cols = 0, rows = 0, width = 0, height = 0, dpr = 1;
   let mouse = { x: -9999, y: -9999 };
   let lastTime = performance.now();
+  let lastFrame = 0;
+  let activeUntil = performance.now() + 2800;
 
   function nodeAt(c, r) { return nodes[r * cols + c]; }
 
@@ -336,7 +340,10 @@ function setLang(lang) {
     nodes.length = 0;
     springs.length = 0;
     sparks.length = 0;
+    pendingCuts.length = 0;
     canvas.dataset.brokenSprings = '0';
+    canvas.dataset.meshState = 'active';
+    activeUntil = performance.now() + 2800;
     cols = Math.ceil(width / SPACING) + 1;
     rows = Math.ceil(height / SPACING) + 1;
 
@@ -365,7 +372,9 @@ function setLang(lang) {
     const rect = canvas.getBoundingClientRect();
     width = rect.width;
     height = rect.height;
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // A large backing canvas plus shadows is expensive on 4K/Retina screens.
+    // 1.25 keeps the glow crisp without rendering millions of extra pixels.
+    dpr = Math.min(window.devicePixelRatio || 1, 1.25);
     canvas.width = Math.round(width * dpr);
     canvas.height = Math.round(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -427,13 +436,14 @@ function setLang(lang) {
     ctx.lineWidth = 0.75;
     ctx.stroke();
 
+    ctx.beginPath();
     for (const n of nodes) {
-      ctx.beginPath();
+      ctx.moveTo(n.x + 1.55, n.y);
       ctx.arc(n.x, n.y, 1.55, 0, Math.PI * 2);
-      ctx.shadowBlur = 7;
-      ctx.fillStyle = 'rgba(70, 220, 255, 0.48)';
-      ctx.fill();
     }
+    ctx.shadowBlur = 7;
+    ctx.fillStyle = 'rgba(70, 220, 255, 0.48)';
+    ctx.fill();
 
     for (let i = sparks.length - 1; i >= 0; i--) {
       const p = sparks[i];
@@ -460,17 +470,18 @@ function setLang(lang) {
     return { distance:Math.hypot(px-x, py-y), x, y };
   }
 
-  function cutNearestLine() {
+  function cutNearestLine(point) {
     let nearest = null;
     let hit = null;
     for (const s of springs) {
       if (s.broken) continue;
-      const candidate = pointToSegmentDistance(mouse.x, mouse.y, s.a, s.b);
+      const candidate = pointToSegmentDistance(point.x, point.y, s.a, s.b);
       if (!hit || candidate.distance < hit.distance) { nearest = s; hit = candidate; }
     }
     if (!nearest || hit.distance > CUT_DISTANCE) return;
     nearest.broken = true;
     canvas.dataset.brokenSprings = String(Number(canvas.dataset.brokenSprings) + 1);
+    activeUntil = performance.now() + 2400;
 
     // The recoil makes the released tension legible immediately.
     const dx = nearest.b.x - nearest.a.x;
@@ -486,20 +497,40 @@ function setLang(lang) {
   }
 
   function frame(now) {
+    requestAnimationFrame(frame);
+    if (now - lastFrame < FRAME_INTERVAL) return;
+    lastFrame = now;
+
+    while (pendingCuts.length) cutNearestLine(pendingCuts.shift());
+    const active = now < activeUntil || sparks.length > 0;
+    if (!active) {
+      canvas.dataset.meshState = 'sleeping';
+      lastTime = now;
+      return;
+    }
+    canvas.dataset.meshState = 'active';
+
     const dt = Math.min((now - lastTime) / 16.667, 1.8);
     lastTime = now;
     // Two smaller passes keep the spring solver calm after several cuts.
     simulate(dt * 0.5);
     simulate(dt * 0.5);
     draw();
-    requestAnimationFrame(frame);
   }
 
   hero.addEventListener('pointermove', e => {
     const rect = canvas.getBoundingClientRect();
     mouse.x = e.clientX - rect.left;
     mouse.y = e.clientY - rect.top;
-    cutNearestLine();
+    // Queue a few recent samples and perform the expensive hit test once per
+    // animation frame instead of once for every high-frequency pointer event.
+    const events = e.getCoalescedEvents ? e.getCoalescedEvents() : [];
+    if (!events.length) events.push(e);
+    for (const event of events) {
+      pendingCuts.push({ x:event.clientX - rect.left, y:event.clientY - rect.top });
+    }
+    if (pendingCuts.length > 6) pendingCuts.splice(0, pendingCuts.length - 6);
+    activeUntil = performance.now() + 500;
   });
 
   hero.addEventListener('pointerleave', () => {
