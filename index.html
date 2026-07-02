@@ -80,6 +80,8 @@
 
     /* Media placeholder */
     .media-placeholder{background:var(--surface2);border:1px solid var(--border);border-radius:6px;height:160px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.75rem;color:var(--muted);flex-direction:column;gap:.5rem}
+    .project-media{background:radial-gradient(circle at 50% 55%,rgba(0,212,255,.08),transparent 68%),var(--surface2);border:1px solid var(--border);border-radius:6px;aspect-ratio:4/3;overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .project-media img{display:block;width:100%;height:100%;object-fit:contain}
 
     /* Skills */
     .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
@@ -207,11 +209,9 @@
       <span class="ptag pub" data-en>📄 Pending Publication</span>
       <p class="project-title" data-da>Blæksprutte-inspireret modulær blød robot</p>
       <p class="project-title" data-en>Cuttlefish-Inspired Modular Soft Robot</p>
-      <div class="media-placeholder">
-        <span>🎥</span>
-        <span data-da>Video / billeder kommer snart</span>
-        <span data-en>Video / images coming soon</span>
-      </div>
+      <figure class="project-media">
+        <img src="assets/soft-robot.webp" alt="Cuttlefish-inspired modular soft underwater robot prototype" width="1200" height="1200" loading="lazy" decoding="async"/>
+      </figure>
       <p class="project-desc" data-da>Masterspeciale og forskningsartikel til journal-publicering. Designede og byggede en bio-inspireret modulær undervands-robot med laterale bølgefinner, kamakselmekanisme, senetrukket styring og trådløs drift. Opnåede 3,6 cm/s fremad-svømning med stabil kursstyring og differential-drev manøvrering.</p>
       <p class="project-desc" data-en>Master's thesis and research paper submitted for journal publication. Designed and built a bio-inspired modular underwater robot with lateral undulatory fins, eccentric camshaft mechanism, tendon-driven steering and wireless untethered operation. Achieved 3.6 cm/s forward swimming with stable head-steering and differential-drive manoeuvring.</p>
       <div class="techs">
