@@ -382,6 +382,7 @@ function setLang(lang) {
   let cols = 0, rows = 0, width = 0, height = 0, dpr = 1;
   let originX = 0, originY = 0;
   let lastPointer = null;
+  let pointerTravel = 0;
   let lastCutAt = 0;
   let animationId = 0;
   let animationStarted = 0;
@@ -640,15 +641,17 @@ function setLang(lang) {
     if (!events.length) events.push(e);
     const event = events[events.length - 1];
     const point = { x:event.clientX - rect.left, y:event.clientY - rect.top };
-    if (!lastPointer) { lastPointer = point; return; }
+    if (!lastPointer) { lastPointer = point; pointerTravel = 0; return; }
     const moved = Math.hypot(point.x - lastPointer.x, point.y - lastPointer.y);
     lastPointer = point;
+    pointerTravel += moved;
     const now = performance.now();
-    if (moved < 3 || now - lastCutAt < 45) return;
+    if (pointerTravel < 1.25 || now - lastCutAt < 45) return;
+    pointerTravel = 0;
     if (cutNearestLine(point)) lastCutAt = now;
   });
 
-  hero.addEventListener('pointerleave', () => { lastPointer = null; });
+  hero.addEventListener('pointerleave', () => { lastPointer = null; pointerTravel = 0; });
 
   // Keyboard reset is useful after experimenting without adding UI chrome.
   window.addEventListener('keydown', e => {
