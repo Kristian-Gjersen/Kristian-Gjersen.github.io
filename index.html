@@ -60,6 +60,10 @@
     h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;letter-spacing:-.02em;margin-bottom:2.5rem}
     .divider{border:none;border-top:1px solid var(--border);margin:0 2.5rem}
 
+    /* Profile */
+    .profile-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.75rem 2rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem}
+    .profile-card p{font-size:.92rem;color:var(--muted);line-height:1.8}
+
     /* Education */
     .edu-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.75rem 2rem}
     .edu-period{font-family:var(--mono);font-size:.75rem;color:var(--accent);margin-bottom:.5rem}
@@ -138,7 +142,9 @@
       .section-label{font-size:6pt;margin-bottom:.8mm;gap:2mm}
       .section-label::before{width:7mm}
       h2{font-size:13pt;line-height:1.1;margin-bottom:2mm}
-      .edu-card,.project-card,.skill-card,.lang-card{border:1px solid #ccd3dc;break-inside:avoid;box-shadow:none}
+      .profile-card,.edu-card,.project-card,.skill-card,.lang-card{border:1px solid #ccd3dc;break-inside:avoid;box-shadow:none}
+      .profile-card{padding:2.5mm 3mm;grid-template-columns:repeat(2,1fr);gap:4mm}
+      .profile-card p{font-size:7pt;line-height:1.35}
       .edu-card{padding:2.5mm 3mm}
       .edu-period{font-size:6.5pt;margin-bottom:.5mm}
       .edu-title{font-size:9pt;margin-bottom:.3mm}
@@ -182,6 +188,7 @@
       .nav-links{display:none}
       .hero,section{padding-left:1.25rem;padding-right:1.25rem}
       .hero-profile{position:relative;right:auto;top:auto;transform:none;width:150px;margin-top:2rem}
+      .profile-card{grid-template-columns:1fr}
       .divider{margin:0 1.25rem}
       .projects-grid{grid-template-columns:1fr}
     }
@@ -210,12 +217,12 @@
   <canvas id="grid-canvas"></canvas>
   <div class="hero">
     <p class="hero-eyebrow">
-      <span data-da>Civilingeniør i Robotteknologi</span>
+      <span data-da>Civilingeniør, cand.polyt. i robotteknologi</span>
       <span data-en>MSc Robotics Systems Engineer</span>
     </p>
     <h1>Kristian<br/><span class="accent">Gjersen</span></h1>
-    <p class="hero-sub" data-da>Civilingeniør i robotteknologi fra SDU med bred teknisk forståelse inden for mekanik, elektronik, programmering og AI. Specialiseret i bio-inspirerede robotter og autonome systemer.</p>
-    <p class="hero-sub" data-en>MSc in Robotics Systems Engineering from SDU with broad technical expertise spanning mechanics, electronics, programming and AI. Specialising in bio-inspired robots and autonomous systems.</p>
+    <p class="hero-sub" data-da>Civilingeniør i robotteknologi fra SDU med bred teknisk forståelse inden for mekanik, elektronik, programmering og AI. Erfaring med udvikling af tværfaglige robotsystemer fra idé til færdig prototype.</p>
+    <p class="hero-sub" data-en>MSc in Robotics Systems Engineering from SDU with broad technical expertise spanning mechanics, electronics, programming and AI. Experienced in developing multidisciplinary robotic systems from concept to finished prototype.</p>
     <div class="hero-contacts">
       <span class="contact-item"><span class="ci">📍</span> Odense SØ, Danmark</span>
       <span class="contact-item"><span class="ci">📞</span> +45 21 75 81 85</span>
@@ -229,6 +236,20 @@
     <!--<p class="hint" data-en>// move across a line to break the connection</p>-->
   </div>
 </div>
+
+<hr class="divider"/>
+
+<!-- Profile -->
+<section id="profile">
+  <p class="section-label" data-da>Profil</p><p class="section-label" data-en>Profile</p>
+  <h2 data-da>Om mig</h2><h2 data-en>About Me</h2>
+  <div class="profile-card">
+    <p data-da>Jeg er uddannet civilingeniør i robotteknologi fra SDU med en praktisk og tværfaglig tilgang til udvikling af robotsystemer. Jeg trives med at føre idéer fra analyse og konstruktion til programmering, test og færdig prototype.</p>
+    <p data-en>I am a robotics engineer educated at SDU with a practical, multidisciplinary approach to developing robotic systems. I enjoy taking ideas from analysis and design through programming, testing and finished prototypes.</p>
+    <p data-da>Jeg arbejder struktureret og grundigt, tager ansvar for mine opgaver og lægger vægt på tydelig kommunikation og godt samarbejde. Jeg motiveres af at udvikle robotsystemer og tekniske løsninger, hvor mekanik, elektronik og software spiller tæt sammen.</p>
+    <p data-en>I work in a structured and thorough way, take ownership of my responsibilities, and value clear communication and strong collaboration. I am motivated by developing robotic systems and technical solutions where mechanics, electronics and software work closely together.</p>
+  </div>
+</section>
 
 <hr class="divider"/>
 
