@@ -426,6 +426,41 @@ function setLang(lang) {
         if (r < rows - 1) connect(nodeAt(c,r), nodeAt(c,r+1));
       }
     }
+    applyProfileCutout();
+  }
+
+  function applyProfileCutout() {
+    const profile = hero.querySelector('.hero-profile');
+    if (!profile) return;
+
+    const canvasRect = canvas.getBoundingClientRect();
+    const profileRect = profile.getBoundingClientRect();
+    const padding = Math.max(22, profileRect.width * 0.10);
+    const hole = {
+      left: profileRect.left - canvasRect.left - padding,
+      right: profileRect.right - canvasRect.left + padding,
+      top: profileRect.top - canvasRect.top - padding,
+      bottom: profileRect.bottom - canvasRect.top + padding
+    };
+
+    for (const n of nodes) {
+      n.hidden = n.x > hole.left && n.x < hole.right && n.y > hole.top && n.y < hole.bottom;
+    }
+
+    let cutCount = 0;
+    for (const s of springs) {
+      const minX = Math.min(s.a.x, s.b.x);
+      const maxX = Math.max(s.a.x, s.b.x);
+      const minY = Math.min(s.a.y, s.b.y);
+      const maxY = Math.max(s.a.y, s.b.y);
+      const crossesHorizontal = minY === maxY && minY > hole.top && minY < hole.bottom && maxX > hole.left && minX < hole.right;
+      const crossesVertical = minX === maxX && minX > hole.left && minX < hole.right && maxY > hole.top && minY < hole.bottom;
+      if (s.a.hidden || s.b.hidden || crossesHorizontal || crossesVertical) {
+        s.broken = true;
+        cutCount++;
+      }
+    }
+    canvas.dataset.profileCuts = String(cutCount);
   }
 
   function resize() {
@@ -439,6 +474,10 @@ function setLang(lang) {
     canvas.height = Math.round(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     buildMesh();
+    if (!reducedMotion) {
+      for (let i = 0; i < 42; i++) simulate(0.45);
+      for (const n of nodes) { n.vx = 0; n.vy = 0; }
+    }
     draw();
   }
 
@@ -457,6 +496,7 @@ function setLang(lang) {
     }
 
     for (const n of nodes) {
+      if (n.hidden) continue;
       if (n.pinned) { n.x = n.ox; n.y = n.oy; continue; }
       n.vx += (n.ox - n.x) * ANCHOR_STRENGTH * dt;
       n.vy += (n.oy - n.y) * ANCHOR_STRENGTH * dt;
@@ -496,6 +536,7 @@ function setLang(lang) {
 
     ctx.beginPath();
     for (const n of nodes) {
+      if (n.hidden) continue;
       ctx.moveTo(n.x + 1.55, n.y);
       ctx.arc(n.x, n.y, 1.55, 0, Math.PI * 2);
     }
@@ -570,7 +611,7 @@ function setLang(lang) {
 
     let maxSpeed = 0;
     for (const n of nodes) {
-      if (!n.pinned) maxSpeed = Math.max(maxSpeed, Math.hypot(n.vx, n.vy));
+      if (!n.pinned && !n.hidden) maxSpeed = Math.max(maxSpeed, Math.hypot(n.vx, n.vy));
     }
     settledFrames = maxSpeed < 0.018 ? settledFrames + 1 : 0;
 
