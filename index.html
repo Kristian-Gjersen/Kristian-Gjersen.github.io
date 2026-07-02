@@ -37,7 +37,7 @@
     /* Hero with canvas */
     .hero-wrap{position:relative;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
     #grid-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-    .hero{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:8rem 2.5rem 4rem;width:100%}
+    .hero{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:8rem 22rem 4rem 2.5rem;width:100%}
     .hero-eyebrow{font-family:var(--mono);font-size:.78rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
     .hero-eyebrow::before{content:'';display:inline-block;width:32px;height:1px;background:var(--accent)}
     h1{font-size:clamp(2.8rem,6vw,5rem);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-bottom:1rem}
@@ -49,6 +49,9 @@
     .contact-item a:hover{color:var(--accent)}
     .ci{color:var(--accent)}
     .hint{font-family:var(--mono);font-size:.68rem;color:rgba(107,142,181,.5);margin-top:2rem}
+    .hero-profile{position:absolute;right:2.5rem;top:50%;transform:translateY(-46%);width:clamp(210px,24vw,280px);aspect-ratio:4/5;border-radius:12px;overflow:hidden;border:1px solid rgba(0,212,255,.42);background:var(--surface);box-shadow:0 0 0 1px rgba(0,212,255,.08),0 18px 55px rgba(0,0,0,.42)}
+    .hero-profile::after{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 28px rgba(0,212,255,.08);pointer-events:none}
+    .hero-profile img{display:block;width:100%;height:100%;object-fit:cover}
 
     /* Sections */
     section{max-width:1100px;margin:0 auto;padding:5rem 2.5rem;position:relative;z-index:1}
@@ -117,23 +120,68 @@
       *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
       :root{--bg:#fff;--surface:#f8f9fa;--surface2:#eef0f3;--border:#d0d7e3;--accent:#0055aa;--accent2:#0055aa;--text:#111;--muted:#555;--green:#007a50}
       #grid-canvas,nav,.hint{display:none!important}
-      body{background:#fff;color:#111;font-size:11pt}
-      .hero-wrap{min-height:unset}
-      .hero{padding:1.5cm 0 1cm}
-      h1{font-size:28pt}
-      .hero-sub{font-size:10pt}
-      section{padding:.6cm 0;page-break-inside:avoid}
-      .skill-card,.project-card,.edu-card,.lang-card{border:1px solid #ccc;break-inside:avoid}
+      html{scroll-behavior:auto}
+      body{background:#fff;color:#111;font-size:8pt;line-height:1.32}
+      a{color:#111;text-decoration:none}
+      .hero-wrap{min-height:0;display:block;overflow:visible}
+      .hero{max-width:none;min-height:39mm;padding:0 36mm 4mm 0}
+      .hero-eyebrow{font-size:6.5pt;margin-bottom:1.5mm;gap:2mm}
+      .hero-eyebrow::before{width:10mm}
+      h1{font-size:24pt;line-height:.95;margin-bottom:2mm}
+      .hero-sub{max-width:none;font-size:7.5pt;line-height:1.35;margin-bottom:2.5mm}
+      .hero-contacts{gap:1.5mm 4mm;margin:0}
+      .contact-item{font-size:6.5pt;gap:1mm}
+      .hero-profile{right:0;top:0;transform:none;width:28mm;height:35mm;border-radius:3mm;box-shadow:none}
+      .hero-profile::after{display:none}
+      .divider{margin:0;border-color:#c8d0da}
+      section{max-width:none;padding:3.5mm 0}
+      .section-label{font-size:6pt;margin-bottom:.8mm;gap:2mm}
+      .section-label::before{width:7mm}
+      h2{font-size:13pt;line-height:1.1;margin-bottom:2mm}
+      .edu-card,.project-card,.skill-card,.lang-card{border:1px solid #ccd3dc;break-inside:avoid;box-shadow:none}
+      .edu-card{padding:2.5mm 3mm}
+      .edu-period{font-size:6.5pt;margin-bottom:.5mm}
+      .edu-title{font-size:9pt;margin-bottom:.3mm}
+      .edu-inst{font-size:7pt;margin-bottom:1mm}
+      .edu-desc{font-size:7pt;line-height:1.35}
+      .projects-grid{display:block}
+      .project-card{padding:2.5mm 3mm;gap:1mm}
+      .project-card.placeholder{display:none!important}
+      .project-media{display:none!important}
+      .ptag{font-size:5.5pt;padding:.3mm 1.5mm}
+      .project-title{font-size:9pt;line-height:1.2}
+      .project-desc{font-size:7pt;line-height:1.35}
+      .techs{gap:1mm}
+      .tech{font-size:5.5pt;padding:.3mm 1.2mm}
+      #skills{break-before:page}
+      .skills-grid{grid-template-columns:repeat(4,1fr);gap:2mm}
+      .skill-card{padding:1.5mm 2mm}
+      .skill-name{font-size:7pt;margin-bottom:.8mm}
+      .bar-track{height:.7mm;margin-bottom:.5mm}
+      .skill-lbl{font-size:5.5pt}
+      .subh{font-size:9pt;margin:3mm 0 1.5mm}
+      .pills{gap:1mm}
+      .pill{font-size:6.5pt;padding:.8mm 2mm}
+      .lang-grid{grid-template-columns:repeat(2,1fr);gap:2mm}
+      .lang-card{padding:1.5mm 2.5mm}
+      .lang-name{font-size:8pt;margin-bottom:.3mm}
+      .lang-level{font-size:6pt}
       .project-card:hover,.skill-card:hover{transform:none}
       .media-placeholder{display:none}
       footer{display:none}
-      @page{margin:1.5cm 2cm;size:A4}
+      @page{margin:10mm 12mm;size:A4}
+    }
+
+    @media(max-width:900px){
+      .hero{padding-right:15rem}
+      .hero-profile{width:180px}
     }
 
     @media(max-width:640px){
       nav{padding:.75rem 1.25rem}
       .nav-links{display:none}
       .hero,section{padding-left:1.25rem;padding-right:1.25rem}
+      .hero-profile{position:relative;right:auto;top:auto;transform:none;width:150px;margin-top:2rem}
       .divider{margin:0 1.25rem}
       .projects-grid{grid-template-columns:1fr}
     }
@@ -174,6 +222,9 @@
       <span class="contact-item"><span class="ci">✉</span> <a href="mailto:Gjersen2@gmail.com">Gjersen2@gmail.com</a></span>
       <span class="contact-item"><span class="ci">🔗</span> <a href="https://www.linkedin.com/in/kristian-gjersen-246243348/" target="_blank">LinkedIn</a></span>
     </div>
+    <figure class="hero-profile">
+      <img src="assets/profile.webp" alt="Portrait of Kristian Gjersen" width="640" height="800" decoding="async"/>
+    </figure>
     <!--<p class="hint" data-da>// før musen over en linje for at bryde forbindelsen</p>-->
     <!--<p class="hint" data-en>// move across a line to break the connection</p>-->
   </div>
