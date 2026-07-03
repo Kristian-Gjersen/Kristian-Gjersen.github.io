@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="da">
 <head>
   <meta charset="UTF-8"/>
@@ -43,7 +43,7 @@
     h1{font-size:clamp(2.8rem,6vw,5rem);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-bottom:1rem}
     h1 br{display:none}
     .accent{color:var(--accent)}
-    .hero-sub{display:none}
+    .hero-sub{max-width:42rem;font-size:1.05rem;color:var(--muted);line-height:1.75;margin:0 0 1.4rem}
     .hero-contacts{display:flex;flex-wrap:wrap;gap:1.5rem;margin-bottom:1rem}
     .contact-item{font-family:var(--mono);font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:.5rem}
     .contact-item a{color:var(--muted)}
@@ -238,7 +238,7 @@
   <div class="nav-actions">
     <button class="lang-btn active" id="btn-da" onclick="setLang('da')">DA</button>
     <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
-    <button class="print-btn" onclick="window.print()">⬇ Print CV</button>
+    <button class="print-btn" onclick="window.print()">â¬‡ Print CV</button>
   </div>
 </nav>
 
@@ -247,30 +247,32 @@
   <canvas id="grid-canvas"></canvas>
   <div class="hero">
     <p class="hero-eyebrow">
-      <span data-da>Civilingeniør, cand.polyt. i robotteknologi</span>
+      <span data-da>CivilingeniÃ¸r, cand.polyt. i robotteknologi</span>
       <span data-en>MSc Robotics Systems Engineer</span>
     </p>
     <h1>Kristian <span class="accent">Gjersen</span></h1>
     <div class="hero-contacts">
-      <span class="contact-item"><span class="ci">📍</span> Odense SØ, Danmark</span>
-      <span class="contact-item"><span class="ci">📞</span> +45 21 75 81 85</span>
-      <span class="contact-item"><span class="ci">✉</span> <a href="mailto:Gjersen2@gmail.com">Gjersen2@gmail.com</a></span>
-      <span class="contact-item"><span class="ci">🔗</span> <a href="https://www.linkedin.com/in/kristian-gjersen-246243348/" target="_blank">LinkedIn</a></span>
+      <span class="contact-item"><span class="ci">ðŸ“</span> Odense SÃ˜, Danmark</span>
+      <span class="contact-item"><span class="ci">ðŸ“ž</span> +45 21 75 81 85</span>
+      <span class="contact-item"><span class="ci">âœ‰</span> <a href="mailto:Gjersen2@gmail.com">Gjersen2@gmail.com</a></span>
+      <span class="contact-item"><span class="ci">ðŸ”—</span> <a href="https://www.linkedin.com/in/kristian-gjersen-246243348/" target="_blank">LinkedIn</a></span>
     </div>
+    <p class="hero-sub" data-da>Jeg er en 25-årig civilingeniør i robotteknologi, som er klar til en ny udfordring. Som civilingeniør i robotteknologi har jeg en bred forståelse for mekanik, elektronik, programmering og AI, og jeg prioriterer god kommunikation i mit arbejde.</p>
+    <p class="hero-sub" data-en>I am a 25-year-old robotics engineer ready for a new challenge. As a robotics engineer, I have a broad understanding of mechanics, electronics, programming and AI, and I place high value on clear communication in my work.</p>
     <ul class="hero-highlights print-only">
-      <li data-da>25-årig civilingeniør i robotteknologi, klar til en ny udfordring.</li>
+      <li data-da>25-Ã¥rig civilingeniÃ¸r i robotteknologi, klar til en ny udfordring.</li>
       <li data-en>25-year-old robotics engineer, ready for a new challenge.</li>
-      <li data-da>Bred teknisk forståelse inden for mekanik, elektronik, programmering og AI.</li>
+      <li data-da>Bred teknisk forstÃ¥else inden for mekanik, elektronik, programmering og AI.</li>
       <li data-en>Broad technical understanding across mechanics, electronics, programming and AI.</li>
       <li data-da>Prioriterer god kommunikation, struktur og samarbejde i mit arbejde.</li>
       <li data-en>Prioritises clear communication, structure and collaboration in my work.</li>
-      <li data-da>Erfaring fra tværfaglige projekter fra idé og prototype til test og dokumentation.</li>
+      <li data-da>Erfaring fra tvÃ¦rfaglige projekter fra idÃ© og prototype til test og dokumentation.</li>
       <li data-en>Experience from cross-disciplinary projects spanning concept, prototyping, testing and documentation.</li>
     </ul>
     <figure class="hero-profile">
       <img src="assets/profile.webp" alt="Portrait of Kristian Gjersen" width="640" height="800" decoding="async"/>
     </figure>
-    <!--<p class="hint" data-da>// før musen over en linje for at bryde forbindelsen</p>-->
+    <!--<p class="hint" data-da>// fÃ¸r musen over en linje for at bryde forbindelsen</p>-->
     <!--<p class="hint" data-en>// move across a line to break the connection</p>-->
   </div>
 </div>
@@ -282,9 +284,9 @@
   <p class="section-label" data-da>Profil</p><p class="section-label" data-en>Profile</p>
   <h2 data-da>Om mig</h2><h2 data-en>About Me</h2>
   <div class="profile-card">
-    <p data-da>Jeg er en 25-årig civilingeniør i robotteknologi fra SDU, som er klar til en ny udfordring. Jeg har en praktisk og tværfaglig tilgang til udvikling af robotsystemer og trives med at føre idéer fra analyse og konstruktion til programmering, test og færdig prototype.</p>
+    <p data-da>Jeg er en 25-Ã¥rig civilingeniÃ¸r i robotteknologi fra SDU, som er klar til en ny udfordring. Jeg har en praktisk og tvÃ¦rfaglig tilgang til udvikling af robotsystemer og trives med at fÃ¸re idÃ©er fra analyse og konstruktion til programmering, test og fÃ¦rdig prototype.</p>
     <p data-en>I am a 25-year-old robotics engineer educated at SDU, ready for a new challenge. I bring a practical, multidisciplinary approach to developing robotic systems and enjoy taking ideas from analysis and design through programming, testing and finished prototypes.</p>
-    <p data-da>Som civilingeniør i robotteknologi har jeg en bred forståelse for mekanik, elektronik, programmering og AI, og jeg prioriterer god kommunikation, struktur og samarbejde i mit arbejde. Min personlige interesse for luftfart, flysystemer og aerodynamik har samtidig styrket min forståelse for bevægelse, stabilitet og systemadfærd, hvilket også har været relevant i mit undervandsprojekt.</p>
+    <p data-da>Som civilingeniÃ¸r i robotteknologi har jeg en bred forstÃ¥else for mekanik, elektronik, programmering og AI, og jeg prioriterer god kommunikation, struktur og samarbejde i mit arbejde. Min personlige interesse for luftfart, flysystemer og aerodynamik har samtidig styrket min forstÃ¥else for bevÃ¦gelse, stabilitet og systemadfÃ¦rd, hvilket ogsÃ¥ har vÃ¦ret relevant i mit undervandsprojekt.</p>
     <p data-en>As a robotics engineer, I have a broad understanding of mechanics, electronics, programming and AI, and I place high value on clear communication, structure and collaboration in my work. My personal interest in aviation, aircraft systems and aerodynamics has also strengthened my intuition for motion, stability and system behaviour, which has been relevant in my underwater robotics project.</p>
   </div>
 </section>
@@ -296,12 +298,12 @@
   <p class="section-label" data-da>Uddannelse</p><p class="section-label" data-en>Education</p>
   <h2 data-da>Akademisk baggrund</h2><h2 data-en>Academic Background</h2>
   <div class="edu-card">
-    <p class="edu-period">2020 – 2026</p>
-    <p class="edu-title" data-da>Civilingeniør i Robotteknologi (Kandidatuddannelse)</p>
+    <p class="edu-period">2020 â€“ 2026</p>
+    <p class="edu-title" data-da>CivilingeniÃ¸r i Robotteknologi (Kandidatuddannelse)</p>
     <p class="edu-title" data-en>MSc Robotics Systems (Civil Engineer)</p>
-    <p class="edu-inst">Syddansk Universitet (SDU) — Odense</p>
-    <p class="edu-desc" data-da>Bred teknisk forståelse for udvikling af robotsystemer — fra programmering, elektronik, mekanik og regulering til kunstig intelligens, computer vision og avanceret robotstyring. Arbejdet med robotkinematik, signalbehandling, numeriske metoder, statistik, image processing, soft robotics og embodied AI. Uddannelsen har udviklet evnen til at analysere komplekse tekniske problemstillinger og arbejde projektorienteret og tværfagligt fra idé til færdig prototype.</p>
-    <p class="edu-desc" data-en>Broad technical understanding of robotic systems development — spanning programming, electronics, mechanics and control theory through to AI, computer vision and advanced robot control. Covering robot kinematics, signal processing, numerical methods, statistics, image processing, soft robotics and embodied AI. Trained to analyse complex engineering problems and work project-oriented and cross-disciplinary from concept to finished prototype.</p>
+    <p class="edu-inst">Syddansk Universitet (SDU) â€” Odense</p>
+    <p class="edu-desc" data-da>Bred teknisk forstÃ¥else for udvikling af robotsystemer â€” fra programmering, elektronik, mekanik og regulering til kunstig intelligens, computer vision og avanceret robotstyring. Arbejdet med robotkinematik, signalbehandling, numeriske metoder, statistik, image processing, soft robotics og embodied AI. Uddannelsen har udviklet evnen til at analysere komplekse tekniske problemstillinger og arbejde projektorienteret og tvÃ¦rfagligt fra idÃ© til fÃ¦rdig prototype.</p>
+    <p class="edu-desc" data-en>Broad technical understanding of robotic systems development â€” spanning programming, electronics, mechanics and control theory through to AI, computer vision and advanced robot control. Covering robot kinematics, signal processing, numerical methods, statistics, image processing, soft robotics and embodied AI. Trained to analyse complex engineering problems and work project-oriented and cross-disciplinary from concept to finished prototype.</p>
   </div>
 </section>
 
@@ -310,20 +312,20 @@
 <!-- Skills -->
 <section id="skills">
   <p class="section-label" data-da>Kompetencer</p><p class="section-label" data-en>Skills</p>
-  <h2 data-da>Tekniske færdigheder</h2><h2 data-en>Technical Skills</h2>
+  <h2 data-da>Tekniske fÃ¦rdigheder</h2><h2 data-en>Technical Skills</h2>
   <div class="skills-grid">
     <div class="skill-card"><p class="skill-name">Python</p><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div><p class="skill-lbl" data-da>Ekspert</p><p class="skill-lbl" data-en>Expert</p></div>
     <div class="skill-card"><p class="skill-name">LaTeX</p><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div><p class="skill-lbl" data-da>Ekspert</p><p class="skill-lbl" data-en>Expert</p></div>
-    <div class="skill-card"><p class="skill-name">MATLAB</p><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div><p class="skill-lbl" data-da>Øvet</p><p class="skill-lbl" data-en>Proficient</p></div>
-    <div class="skill-card"><p class="skill-name">C / C++</p><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div><p class="skill-lbl" data-da>Øvet</p><p class="skill-lbl" data-en>Proficient</p></div>
+    <div class="skill-card"><p class="skill-name">MATLAB</p><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div><p class="skill-lbl" data-da>Ã˜vet</p><p class="skill-lbl" data-en>Proficient</p></div>
+    <div class="skill-card"><p class="skill-name">C / C++</p><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div><p class="skill-lbl" data-da>Ã˜vet</p><p class="skill-lbl" data-en>Proficient</p></div>
     <div class="skill-card"><p class="skill-name">AI / Machine Learning</p><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div><p class="skill-lbl" data-da>Ekspert</p><p class="skill-lbl" data-en>Expert</p></div>
     <div class="skill-card"><p class="skill-name">HTML & CSS</p><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><p class="skill-lbl" data-da>Avanceret</p><p class="skill-lbl" data-en>Advanced</p></div>
     <div class="skill-card"><p class="skill-name">Excel / PowerPoint</p><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div><p class="skill-lbl" data-da>Ekspert</p><p class="skill-lbl" data-en>Expert</p></div>
-    <div class="skill-card"><p class="skill-name">Simulink</p><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div><p class="skill-lbl" data-da>Øvet</p><p class="skill-lbl" data-en>Proficient</p></div>
-    <div class="skill-card"><p class="skill-name">SQL</p><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><p class="skill-lbl" data-da>Let øvet</p><p class="skill-lbl" data-en>Beginner–Intermediate</p></div>
-    <div class="skill-card"><p class="skill-name">R</p><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><p class="skill-lbl" data-da>Let øvet</p><p class="skill-lbl" data-en>Beginner–Intermediate</p></div>
-    <div class="skill-card"><p class="skill-name">Java</p><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div><p class="skill-lbl" data-da>Let øvet</p><p class="skill-lbl" data-en>Beginner–Intermediate</p></div>
-    <div class="skill-card"><p class="skill-name">Assembly / VHDL</p><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div><p class="skill-lbl" data-da>Let øvet</p><p class="skill-lbl" data-en>Beginner–Intermediate</p></div>
+    <div class="skill-card"><p class="skill-name">Simulink</p><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div><p class="skill-lbl" data-da>Ã˜vet</p><p class="skill-lbl" data-en>Proficient</p></div>
+    <div class="skill-card"><p class="skill-name">SQL</p><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><p class="skill-lbl" data-da>Let Ã¸vet</p><p class="skill-lbl" data-en>Beginnerâ€“Intermediate</p></div>
+    <div class="skill-card"><p class="skill-name">R</p><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><p class="skill-lbl" data-da>Let Ã¸vet</p><p class="skill-lbl" data-en>Beginnerâ€“Intermediate</p></div>
+    <div class="skill-card"><p class="skill-name">Java</p><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div><p class="skill-lbl" data-da>Let Ã¸vet</p><p class="skill-lbl" data-en>Beginnerâ€“Intermediate</p></div>
+    <div class="skill-card"><p class="skill-name">Assembly / VHDL</p><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div><p class="skill-lbl" data-da>Let Ã¸vet</p><p class="skill-lbl" data-en>Beginnerâ€“Intermediate</p></div>
   </div>
 
   <p class="subh" data-da>Personlige egenskaber</p>
@@ -332,11 +334,11 @@
     <span class="pill" data-da>Grundig & kvalitetsbevidst</span><span class="pill" data-en>Thorough & quality-conscious</span>
     <span class="pill" data-da>Analytisk & struktureret</span><span class="pill" data-en>Analytical & structured</span>
     <span class="pill" data-da>Samarbejdsorienteret</span><span class="pill" data-en>Collaborative</span>
-    <span class="pill" data-da>Teknisk problemløsning</span><span class="pill" data-en>Technical problem-solving</span>
+    <span class="pill" data-da>Teknisk problemlÃ¸sning</span><span class="pill" data-en>Technical problem-solving</span>
     <span class="pill" data-da>Projektkoordinering</span><span class="pill" data-en>Project coordination</span>
     <span class="pill" data-da>Interesse for AI & automatisering</span><span class="pill" data-en>Passion for AI & automation</span>
-    <span class="pill" data-da>Problemløsning</span><span class="pill" data-en>Problem-solving</span>
-    <span class="pill" data-da>Planlægning</span><span class="pill" data-en>Planning</span>
+    <span class="pill" data-da>ProblemlÃ¸sning</span><span class="pill" data-en>Problem-solving</span>
+    <span class="pill" data-da>PlanlÃ¦gning</span><span class="pill" data-en>Planning</span>
     <span class="pill" data-da>Positiv energi</span><span class="pill" data-en>Positive energy</span>
     <span class="pill" data-da>Holdspiller</span><span class="pill" data-en>Team player</span>
     <span class="pill" data-da>Ansvarsbevidst</span><span class="pill" data-en>Responsible</span>
@@ -348,33 +350,33 @@
 <div class="print-languages">
   <p class="section-label" data-da>Sprog</p><p class="section-label" data-en>Languages</p>
   <div class="print-lang-row">
-    <div class="print-lang-box"><strong data-da>Dansk</strong><strong data-en>Danish</strong><span data-da>Modersmål</span><span data-en>Native</span></div>
+    <div class="print-lang-box"><strong data-da>Dansk</strong><strong data-en>Danish</strong><span data-da>ModersmÃ¥l</span><span data-en>Native</span></div>
     <div class="print-lang-box"><strong data-da>Engelsk</strong><strong data-en>English</strong><span data-da>Flydende</span><span data-en>Fluent</span></div>
   </div>
   <div class="print-license">
-    <p class="subh" data-da>Kørekort</p>
+    <p class="subh" data-da>KÃ¸rekort</p>
     <p class="subh" data-en>Driving Licence</p>
-    <div class="pills"><span class="pill">🚗 <span data-da>Kategori B</span><span data-en>Category B</span></span></div>
+    <div class="pills"><span class="pill">ðŸš— <span data-da>Kategori B</span><span data-en>Category B</span></span></div>
   </div>
 </div>
 
 <!-- Projects -->
 <section id="projects">
   <p class="section-label" data-da>Projekter</p><p class="section-label" data-en>Projects</p>
-  <h2 data-da>Projektforløb</h2><h2 data-en>Project Portfolio</h2>
+  <h2 data-da>ProjektforlÃ¸b</h2><h2 data-en>Project Portfolio</h2>
   <div class="projects-grid">
 
     <div class="project-card">
-      <span class="ptag pub" data-da>🎓 Afsluttet kandidatprojekt</span>
-      <span class="ptag pub" data-en>🎓 Completed Master's Thesis</span>
-      <p class="project-title" data-da>Blæksprutte-inspireret modulær blød robot</p>
+      <span class="ptag pub" data-da>ðŸŽ“ Afsluttet kandidatprojekt</span>
+      <span class="ptag pub" data-en>ðŸŽ“ Completed Master's Thesis</span>
+      <p class="project-title" data-da>BlÃ¦ksprutte-inspireret modulÃ¦r blÃ¸d robot</p>
       <p class="project-title" data-en>Cuttlefish-Inspired Modular Soft Robot</p>
       <figure class="project-media">
         <img src="assets/soft-robot.webp" alt="Cuttlefish-inspired modular soft underwater robot prototype" width="1200" height="1200" loading="eager" decoding="sync"/>
       </figure>
-      <p class="project-summary" data-da>Mit kandidatprojekt om en modulær undervandsrobot med egenudviklet mekanik, fremdrift og styring.</p>
+      <p class="project-summary" data-da>Mit kandidatprojekt om en modulÃ¦r undervandsrobot med egenudviklet mekanik, fremdrift og styring.</p>
       <p class="project-summary" data-en>My master's thesis on a modular underwater robot with custom mechanics, propulsion and steering.</p>
-      <p class="project-desc" data-da>Mit afsluttede kandidatprojekt i robotteknologi. På baggrund af projektet udarbejder jeg en separat forskningsartikel med henblik på journal-publicering. Jeg designede og byggede en bio-inspireret modulær undervandsrobot med laterale bølgefinner, kamakselmekanisme, senetrukket styring og trådløs drift. Robotten opnåede 3,6 cm/s fremadsvømning med stabil kursstyring og differential-drev manøvrering.</p>
+      <p class="project-desc" data-da>Mit afsluttede kandidatprojekt i robotteknologi. PÃ¥ baggrund af projektet udarbejder jeg en separat forskningsartikel med henblik pÃ¥ journal-publicering. Jeg designede og byggede en bio-inspireret modulÃ¦r undervandsrobot med laterale bÃ¸lgefinner, kamakselmekanisme, senetrukket styring og trÃ¥dlÃ¸s drift. Robotten opnÃ¥ede 3,6 cm/s fremadsvÃ¸mning med stabil kursstyring og differential-drev manÃ¸vrering.</p>
       <p class="project-desc" data-en>My completed master's thesis in robotics. Based on the project, I am preparing a separate research paper for journal publication. I designed and built a bio-inspired modular underwater robot with lateral undulatory fins, an eccentric camshaft mechanism, tendon-driven steering and wireless untethered operation. The robot achieved 3.6 cm/s forward swimming with stable head steering and differential-drive manoeuvring.</p>
       <div class="techs">
         <span class="tech">Soft Robotics</span><span class="tech">3D Print</span>
@@ -385,8 +387,8 @@
     </div>
 
     <div class="project-card">
-      <span class="ptag" data-da>🤝 Experts in Teams</span>
-      <span class="ptag" data-en>🤝 Experts in Teams</span>
+      <span class="ptag" data-da>ðŸ¤ Experts in Teams</span>
+      <span class="ptag" data-en>ðŸ¤ Experts in Teams</span>
       <p class="project-title" data-da>Dataindsamling til automation med robotsimulering og digital twin</p>
       <p class="project-title" data-en>Automation Data Collection with Robot Simulation and Digital Twin</p>
       <figure class="project-media">
@@ -394,7 +396,7 @@
       </figure>
       <p class="project-summary" data-da>Experts in Teams-projekt om at indsamle og sammenligne data fra fysiske robotter og deres digitale tvilling/simulering for bedre driftssikkerhed.</p>
       <p class="project-summary" data-en>Experts in Teams project focused on collecting and comparing data from physical robots and their digital twin simulations to improve reliability.</p>
-      <p class="project-desc" data-da>Udviklede en modulær data-pipeline til automation, hvor data blev indsamlet, processeret, lagret og visualiseret med fokus på driftssikkerhed og skalerbarhed. Løsningen brugte en edge-enhed, caching ved cloud-nedbrud og dashboards til realtidsindsigt i robotsimulering og fysisk systemadfærd.</p>
+      <p class="project-desc" data-da>Udviklede en modulÃ¦r data-pipeline til automation, hvor data blev indsamlet, processeret, lagret og visualiseret med fokus pÃ¥ driftssikkerhed og skalerbarhed. LÃ¸sningen brugte en edge-enhed, caching ved cloud-nedbrud og dashboards til realtidsindsigt i robotsimulering og fysisk systemadfÃ¦rd.</p>
       <p class="project-desc" data-en>Developed a modular data pipeline for automation where data was collected, processed, stored and visualised with a focus on reliability and scalability. The solution used an edge device, local caching during cloud downtime, and dashboards for real-time insight into robot simulation and physical system behaviour.</p>
       <div class="techs">
         <span class="tech">Digital Twin</span><span class="tech">Robot Simulation</span>
@@ -404,16 +406,16 @@
     </div>
 
     <div class="project-card">
-      <span class="ptag" data-da>🗺️ Projekt i avanceret robotteknologi</span>
-      <span class="ptag" data-en>🗺️ Advanced Robotics Project</span>
-      <p class="project-title" data-da>Visual SLAM til autonom kørsel</p>
+      <span class="ptag" data-da>ðŸ—ºï¸ Projekt i avanceret robotteknologi</span>
+      <span class="ptag" data-en>ðŸ—ºï¸ Advanced Robotics Project</span>
+      <p class="project-title" data-da>Visual SLAM til autonom kÃ¸rsel</p>
       <p class="project-title" data-en>Visual SLAM for Autonomous Driving</p>
       <figure class="project-media">
         <img src="assets/vslam-results.png" alt="VSLAM position estimate compared against ground truth" width="937" height="839" loading="eager" decoding="sync"/>
       </figure>
-      <p class="project-summary" data-da>Projekt i avanceret robotteknologi om Visual SLAM med feature-baseret visuel odometri og loop closure på KITTI-datasættet.</p>
+      <p class="project-summary" data-da>Projekt i avanceret robotteknologi om Visual SLAM med feature-baseret visuel odometri og loop closure pÃ¥ KITTI-datasÃ¦ttet.</p>
       <p class="project-summary" data-en>Advanced robotics project on Visual SLAM with feature-based visual odometry and loop closure using the KITTI dataset.</p>
-      <p class="project-desc" data-da>Implementerede og evaluerede en Visual SLAM-løsning til autonom kørsel med ORB- eller SIFT-features, bundle adjustment og loop closure. Projektet fokuserede på at rekonstruere kørselsforløb og reducere fejl gennem forbedret kortlægning og lokalisering.</p>
+      <p class="project-desc" data-da>Implementerede og evaluerede en Visual SLAM-lÃ¸sning til autonom kÃ¸rsel med ORB- eller SIFT-features, bundle adjustment og loop closure. Projektet fokuserede pÃ¥ at rekonstruere kÃ¸rselsforlÃ¸b og reducere fejl gennem forbedret kortlÃ¦gning og lokalisering.</p>
       <p class="project-desc" data-en>Implemented and evaluated a Visual SLAM pipeline for autonomous driving using ORB or SIFT features, bundle adjustment and loop closure. The project focused on reconstructing vehicle trajectories and reducing error through improved mapping and localisation.</p>
       <div class="techs">
         <span class="tech">Visual SLAM</span><span class="tech">ORB</span>
@@ -423,16 +425,16 @@
     </div>
 
     <div class="project-card">
-      <span class="ptag" data-da>🎓 Bachelorprojekt</span>
-      <span class="ptag" data-en>🎓 Bachelor Project</span>
-      <p class="project-title" data-da>Sensorbaseret blød griber til frugtidentifikation</p>
+      <span class="ptag" data-da>ðŸŽ“ Bachelorprojekt</span>
+      <span class="ptag" data-en>ðŸŽ“ Bachelor Project</span>
+      <p class="project-title" data-da>Sensorbaseret blÃ¸d griber til frugtidentifikation</p>
       <p class="project-title" data-en>Sensorised Soft Gripper for Fruit Identification</p>
       <figure class="project-media">
         <img src="assets/soft-gripper.webp" alt="Six-finger soft gripper fitted with flex and force sensors" width="900" height="1200" loading="eager" decoding="sync"/>
       </figure>
-      <p class="project-summary" data-da>Bachelorprojekt om en blød griber med sensorer og klassifikation af frugt under selve grebet.</p>
+      <p class="project-summary" data-da>Bachelorprojekt om en blÃ¸d griber med sensorer og klassifikation af frugt under selve grebet.</p>
       <p class="project-summary" data-en>Bachelor project on a soft gripper with sensors and fruit classification during grasping.</p>
-      <p class="project-desc" data-da>Mit bachelorprojekt i robotteknologi om en blød griber til skånsom håndtering og klassificering af æbler, appelsiner, pærer og kiwier. Jeg integrerede flex- og kraftsensorer, indsamlede data via Arduino og UART og sammenlignede Random Forest med LDA. Systemet opnåede op til 93 % korrekt identifikation i live-tests uden at beskadige frugten.</p>
+      <p class="project-desc" data-da>Mit bachelorprojekt i robotteknologi om en blÃ¸d griber til skÃ¥nsom hÃ¥ndtering og klassificering af Ã¦bler, appelsiner, pÃ¦rer og kiwier. Jeg integrerede flex- og kraftsensorer, indsamlede data via Arduino og UART og sammenlignede Random Forest med LDA. Systemet opnÃ¥ede op til 93 % korrekt identifikation i live-tests uden at beskadige frugten.</p>
       <p class="project-desc" data-en>My bachelor project in robotics, focused on a soft gripper for delicate handling and classification of apples, oranges, pears and kiwis. I integrated flex and force sensors, collected data through Arduino and UART, and compared Random Forest with LDA. The system achieved up to 93% correct identification in live tests without damaging the fruit.</p>
       <div class="techs">
         <span class="tech">Soft Robotics</span><span class="tech">Force Sensing</span>
@@ -442,8 +444,8 @@
     </div>
 
     <div class="project-card">
-      <span class="ptag" data-da>🎥 Semesterprojekt</span>
-      <span class="ptag" data-en>🎥 Semester Project</span>
+      <span class="ptag" data-da>ðŸŽ¥ Semesterprojekt</span>
+      <span class="ptag" data-en>ðŸŽ¥ Semester Project</span>
       <p class="project-title" data-da>Pan/tilt-system med PI/PID-regulering</p>
       <p class="project-title" data-en>Pan/Tilt System with PI/PID Control</p>
       <figure class="project-media">
@@ -461,17 +463,17 @@
     </div>
 
     <div class="project-card">
-      <span class="ptag" data-da>🔊 Semesterprojekt</span>
-      <span class="ptag" data-en>🔊 Semester Project</span>
+      <span class="ptag" data-da>ðŸ”Š Semesterprojekt</span>
+      <span class="ptag" data-en>ðŸ”Š Semester Project</span>
       <p class="project-title" data-da>Robotstyring via DTMF-lyd</p>
       <p class="project-title" data-en>Robot Motion Control via DTMF Audio</p>
       <figure class="project-media">
         <img src="assets/dtmf-robot.webp" alt="TurtleBot3 robot used for DTMF motion control" width="278" height="320" loading="eager" decoding="sync"/>
       </figure>
-      <p class="project-summary" data-da>Semesterprojekt om lydbaseret robotstyring via DTMF med robust protokol og præcis udførelse.</p>
+      <p class="project-summary" data-da>Semesterprojekt om lydbaseret robotstyring via DTMF med robust protokol og prÃ¦cis udfÃ¸relse.</p>
       <p class="project-summary" data-en>Semester project on DTMF-based robot control with a robust protocol and precise execution.</p>
-      <p class="project-desc" data-da>Udviklede en kommunikationsprotokol, der omsatte en planlagt rute til DTMF-toner, afkodede signalet med DFT og sendte bevægelseskommandoer til en TurtleBot3. CRC-15, acknowledgements og pakkenumre sikrede robust dataoverførsel, mens MQTT og ROS stod for udførelsen på robotten med en bevægelsesnøjagtighed på ±2 cm.</p>
-      <p class="project-desc" data-en>Developed a communication protocol that translated a planned route into DTMF tones, decoded the signal using a DFT, and sent motion commands to a TurtleBot3. CRC-15, acknowledgements and packet numbering provided robust transmission, while MQTT and ROS handled execution on the robot with movement accuracy of ±2 cm.</p>
+      <p class="project-desc" data-da>Udviklede en kommunikationsprotokol, der omsatte en planlagt rute til DTMF-toner, afkodede signalet med DFT og sendte bevÃ¦gelseskommandoer til en TurtleBot3. CRC-15, acknowledgements og pakkenumre sikrede robust dataoverfÃ¸rsel, mens MQTT og ROS stod for udfÃ¸relsen pÃ¥ robotten med en bevÃ¦gelsesnÃ¸jagtighed pÃ¥ Â±2 cm.</p>
+      <p class="project-desc" data-en>Developed a communication protocol that translated a planned route into DTMF tones, decoded the signal using a DFT, and sent motion commands to a TurtleBot3. CRC-15, acknowledgements and packet numbering provided robust transmission, while MQTT and ROS handled execution on the robot with movement accuracy of Â±2 cm.</p>
       <div class="techs">
         <span class="tech">Signal Processing</span><span class="tech">DTMF</span>
         <span class="tech">DFT</span><span class="tech">CRC-15</span>
@@ -480,8 +482,8 @@
     </div>
 
     <div class="project-card">
-      <span class="ptag" data-da>🎈 Semesterprojekt</span>
-      <span class="ptag" data-en>🎈 Semester Project</span>
+      <span class="ptag" data-da>ðŸŽˆ Semesterprojekt</span>
+      <span class="ptag" data-en>ðŸŽˆ Semester Project</span>
       <p class="project-title" data-da>Ballon-/jamming-griber til UR5 pick-and-place</p>
       <p class="project-title" data-en>Balloon / Jamming Gripper for UR5 Pick-and-Place</p>
       <figure class="project-media">
@@ -489,7 +491,7 @@
       </figure>
       <p class="project-summary" data-da>2. semesterprojekt om udvikling af en jamming-griber og et komplet styresystem til UR5, mikrocontroller og database.</p>
       <p class="project-summary" data-en>2nd semester project on developing a jamming gripper and a complete control stack for UR5, microcontroller and database integration.</p>
-      <p class="project-desc" data-da>Udviklede en soft/jamming-griber til håndtering af små komplekse emner samt software til styring via UR5, RS232/UART og databaseintegration. Systemet blev implementeret i C++ med MODBUS til robotten og MySQL til datalagring.</p>
+      <p class="project-desc" data-da>Udviklede en soft/jamming-griber til hÃ¥ndtering af smÃ¥ komplekse emner samt software til styring via UR5, RS232/UART og databaseintegration. Systemet blev implementeret i C++ med MODBUS til robotten og MySQL til datalagring.</p>
       <p class="project-desc" data-en>Developed a soft/jamming gripper for handling small complex objects together with software for UR5 control, RS232/UART communication and database integration. The system was implemented in C++ using MODBUS for the robot and MySQL for data storage.</p>
       <div class="techs">
         <span class="tech">Soft Gripper</span><span class="tech">UR5</span>
@@ -499,8 +501,8 @@
     </div>
 
     <div class="project-card">
-      <span class="ptag" data-da>🖊️ Semesterprojekt</span>
-      <span class="ptag" data-en>🖊️ Semester Project</span>
+      <span class="ptag" data-da>ðŸ–Šï¸ Semesterprojekt</span>
+      <span class="ptag" data-en>ðŸ–Šï¸ Semester Project</span>
       <p class="project-title" data-da>Tegnerobot med billedanalyse og automatisk blyantspidsning</p>
       <p class="project-title" data-en>Drawing Robot with Image Analysis and Automatic Pencil Sharpening</p>
       <figure class="project-media">
@@ -508,7 +510,7 @@
       </figure>
       <p class="project-summary" data-da>Semesterprojekt om at konvertere billeder til robottegninger med generering af g-code og automatisk styring af blyantspidser.</p>
       <p class="project-summary" data-en>Semester project focused on converting images into robot drawings through g-code generation and automatic pencil sharpener control.</p>
-      <p class="project-desc" data-da>Udviklede et system, der analyserede et inputbillede, genererede g-code og fik robotten til at illustrere motivet. Projektet omfattede også test af blyantslid, redesign af blyantspidser og udvikling af et custom kredsløb, så spidseren kun blev aktiveret ved behov.</p>
+      <p class="project-desc" data-da>Udviklede et system, der analyserede et inputbillede, genererede g-code og fik robotten til at illustrere motivet. Projektet omfattede ogsÃ¥ test af blyantslid, redesign af blyantspidser og udvikling af et custom kredslÃ¸b, sÃ¥ spidseren kun blev aktiveret ved behov.</p>
       <p class="project-desc" data-en>Developed a system that analysed an input image, generated g-code, and enabled a robot to reproduce the drawing. The project also included testing pencil wear, redesigning the sharpener, and building a custom circuit so sharpening was only triggered when needed.</p>
       <div class="techs">
         <span class="tech">G-code</span><span class="tech">Image Analysis</span>
@@ -527,17 +529,17 @@
   <p class="section-label" data-da>Sprog</p><p class="section-label" data-en>Languages</p>
   <h2 data-da>Sprogkundskaber</h2><h2 data-en>Language Skills</h2>
   <div class="lang-grid">
-    <div class="lang-card"><p class="lang-name" data-da>Dansk</p><p class="lang-name" data-en>Danish</p><p class="lang-level" data-da>Modersmål</p><p class="lang-level" data-en>Native</p></div>
+    <div class="lang-card"><p class="lang-name" data-da>Dansk</p><p class="lang-name" data-en>Danish</p><p class="lang-level" data-da>ModersmÃ¥l</p><p class="lang-level" data-en>Native</p></div>
     <div class="lang-card"><p class="lang-name" data-da>Engelsk</p><p class="lang-name" data-en>English</p><p class="lang-level" data-da>Flydende</p><p class="lang-level" data-en>Fluent</p></div>
   </div>
-  <p class="subh" data-da>Kørekort</p>
+  <p class="subh" data-da>KÃ¸rekort</p>
   <p class="subh" data-en>Driving Licence</p>
-  <div class="pills"><span class="pill">🚗 <span data-da>Kategori B</span><span data-en>Category B</span></span></div>
+  <div class="pills"><span class="pill">ðŸš— <span data-da>Kategori B</span><span data-en>Category B</span></span></div>
 </section>
 
 <footer>
-  <span data-da>Kristian Gjersen · Sidst opdateret Juli 2026</span>
-  <span data-en>Kristian Gjersen · Last updated July 2026</span>
+  <span data-da>Kristian Gjersen Â· Sidst opdateret Juli 2026</span>
+  <span data-en>Kristian Gjersen Â· Last updated July 2026</span>
 </footer>
 
 <script>
@@ -864,3 +866,5 @@ function setLang(lang) {
 </script>
 </body>
 </html>
+
+
