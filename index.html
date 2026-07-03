@@ -53,6 +53,9 @@
     .hero-profile{position:absolute;right:2.5rem;top:50%;transform:translateY(-46%);width:clamp(210px,24vw,280px);aspect-ratio:4/5;border-radius:12px;overflow:hidden;border:1px solid rgba(0,212,255,.42);background:var(--surface);box-shadow:0 0 0 1px rgba(0,212,255,.08),0 18px 55px rgba(0,0,0,.42)}
     .hero-profile::after{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 28px rgba(0,212,255,.08);pointer-events:none}
     .hero-profile img{display:block;width:100%;height:100%;object-fit:cover}
+    .hero-highlights{display:none}
+    .project-summary{display:none}
+    .print-only{display:none!important}
 
     /* Sections */
     section{max-width:1100px;margin:0 auto;padding:5rem 2.5rem;position:relative;z-index:1}
@@ -135,6 +138,7 @@
       .hero-eyebrow{font-size:6.5pt;margin-bottom:1.5mm;gap:2mm}
       .hero-eyebrow::before{width:10mm}
       h1{font-size:24pt;line-height:.95;margin-bottom:2mm}
+      h1 br{display:none}
       .hero-sub{max-width:none;font-size:7.5pt;line-height:1.35;margin-bottom:2.5mm}
       .hero-contacts{gap:1.5mm 4mm;margin:0}
       .contact-item{font-size:6.5pt;gap:1mm}
@@ -146,8 +150,13 @@
       .section-label::before{width:7mm}
       h2{font-size:13pt;line-height:1.1;margin-bottom:2mm}
       .profile-card,.edu-card,.project-card,.skill-card,.lang-card{border:1px solid #ccd3dc;break-inside:avoid;box-shadow:none}
+      .print-only{display:block!important}
+      .screen-only{display:none!important}
+      .hero-highlights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1mm 4mm;list-style:none;margin:2mm 0 0;padding:0}
+      .hero-highlights li{font-size:6.6pt;line-height:1.3;color:#333}
       .profile-card{padding:2.5mm 3mm;grid-template-columns:repeat(2,1fr);gap:4mm}
       .profile-card p{font-size:7pt;line-height:1.35}
+      #profile{display:none!important}
       .edu-card{padding:2.5mm 3mm}
       .edu-period{font-size:6.5pt;margin-bottom:.5mm}
       .edu-title{font-size:9pt;margin-bottom:.3mm}
@@ -156,12 +165,13 @@
       .projects-grid{display:block}
       .project-card{padding:2.5mm 3mm;gap:1mm}
       .project-card.placeholder{display:none!important}
-      .project-media{display:none!important}
+      .project-media{display:flex!important;aspect-ratio:auto;height:22mm}
       .ptag{font-size:5.5pt;padding:.3mm 1.5mm}
       .project-title{font-size:9pt;line-height:1.2}
-      .project-desc{font-size:7pt;line-height:1.35}
+      .project-desc{display:none!important}
+      .project-summary{display:block;font-size:7pt;line-height:1.35;color:#444}
       .techs{gap:1mm}
-      .tech{font-size:5.5pt;padding:.3mm 1.2mm}
+      .tech{font-size:6.2pt;padding:.5mm 1.5mm;line-height:1.2}
       #skills{break-before:page}
       .skills-grid{grid-template-columns:repeat(4,1fr);gap:2mm}
       .skill-card{padding:1.5mm 2mm}
@@ -232,6 +242,16 @@
       <span class="contact-item"><span class="ci">✉</span> <a href="mailto:Gjersen2@gmail.com">Gjersen2@gmail.com</a></span>
       <span class="contact-item"><span class="ci">🔗</span> <a href="https://www.linkedin.com/in/kristian-gjersen-246243348/" target="_blank">LinkedIn</a></span>
     </div>
+    <ul class="hero-highlights print-only">
+      <li data-da>Robotingeniør med erfaring fra mekanik, elektronik, programmering og AI.</li>
+      <li data-en>Robotics engineer with experience across mechanics, electronics, programming and AI.</li>
+      <li data-da>Kandidatprojekt: modulær undervandsrobot med egenudviklet fremdrift og styring.</li>
+      <li data-en>Master's thesis: modular underwater robot with custom propulsion and steering.</li>
+      <li data-da>Bachelorprojekt: blød griber med sensorsystem og frugtklassifikation op til 93 %.</li>
+      <li data-en>Bachelor project: soft gripper with sensing and fruit classification up to 93%.</li>
+      <li data-da>Trives i tværfaglige projekter fra idé og prototype til test og dokumentation.</li>
+      <li data-en>Thrives in cross-disciplinary projects from concept and prototype to test and documentation.</li>
+    </ul>
     <figure class="hero-profile">
       <img src="assets/profile.webp" alt="Portrait of Kristian Gjersen" width="640" height="800" decoding="async"/>
     </figure>
@@ -249,8 +269,8 @@
   <div class="profile-card">
     <p data-da>Jeg er uddannet civilingeniør i robotteknologi fra SDU med en praktisk og tværfaglig tilgang til udvikling af robotsystemer. Jeg trives med at føre idéer fra analyse og konstruktion til programmering, test og færdig prototype.</p>
     <p data-en>I am a robotics engineer educated at SDU with a practical, multidisciplinary approach to developing robotic systems. I enjoy taking ideas from analysis and design through programming, testing and finished prototypes.</p>
-    <p data-da>Jeg arbejder struktureret og grundigt, tager ansvar for mine opgaver og lægger vægt på tydelig kommunikation og godt samarbejde. Jeg motiveres af at udvikle robotsystemer og tekniske løsninger, hvor mekanik, elektronik og software spiller tæt sammen.</p>
-    <p data-en>I work in a structured and thorough way, take ownership of my responsibilities, and value clear communication and strong collaboration. I am motivated by developing robotic systems and technical solutions where mechanics, electronics and software work closely together.</p>
+    <p data-da>Jeg arbejder struktureret og grundigt, tager ansvar for mine opgaver og lægger vægt på tydelig kommunikation og godt samarbejde. En personlig interesse for luftfart, flysystemer og aerodynamik har samtidig styrket min forståelse for bevægelse, stabilitet og systemadfærd, hvilket også har været relevant i mit undervandsprojekt.</p>
+    <p data-en>I work in a structured and thorough way, take ownership of my responsibilities, and value clear communication and strong collaboration. A personal interest in aviation, aircraft systems and aerodynamics has also strengthened my intuition for motion, stability and system behaviour, which has been relevant in my underwater robotics work.</p>
   </div>
 </section>
 
@@ -287,6 +307,8 @@
       <figure class="project-media">
         <img src="assets/soft-robot.webp" alt="Cuttlefish-inspired modular soft underwater robot prototype" width="1200" height="1200" loading="lazy" decoding="async"/>
       </figure>
+      <p class="project-summary" data-da>Mit kandidatprojekt om en modulær undervandsrobot med egenudviklet mekanik, fremdrift og styring.</p>
+      <p class="project-summary" data-en>My master's thesis on a modular underwater robot with custom mechanics, propulsion and steering.</p>
       <p class="project-desc" data-da>Mit afsluttede kandidatprojekt i robotteknologi. På baggrund af projektet udarbejder jeg en separat forskningsartikel med henblik på journal-publicering. Jeg designede og byggede en bio-inspireret modulær undervandsrobot med laterale bølgefinner, kamakselmekanisme, senetrukket styring og trådløs drift. Robotten opnåede 3,6 cm/s fremadsvømning med stabil kursstyring og differential-drev manøvrering.</p>
       <p class="project-desc" data-en>My completed master's thesis in robotics. Based on the project, I am preparing a separate research paper for journal publication. I designed and built a bio-inspired modular underwater robot with lateral undulatory fins, an eccentric camshaft mechanism, tendon-driven steering and wireless untethered operation. The robot achieved 3.6 cm/s forward swimming with stable head steering and differential-drive manoeuvring.</p>
       <div class="techs">
@@ -306,6 +328,8 @@
       <figure class="project-media">
         <img src="assets/soft-gripper.webp" alt="Six-finger soft gripper fitted with flex and force sensors" width="900" height="1200" loading="lazy" decoding="async"/>
       </figure>
+      <p class="project-summary" data-da>Bachelorprojekt om en blød griber med sensorer og klassifikation af frugt under selve grebet.</p>
+      <p class="project-summary" data-en>Bachelor project on a soft gripper with sensors and fruit classification during grasping.</p>
       <p class="project-desc" data-da>Mit bachelorprojekt i robotteknologi om en blød griber til skånsom håndtering og klassificering af æbler, appelsiner, pærer og kiwier. Jeg integrerede flex- og kraftsensorer, indsamlede data via Arduino og UART og sammenlignede Random Forest med LDA. Systemet opnåede op til 93 % korrekt identifikation i live-tests uden at beskadige frugten.</p>
       <p class="project-desc" data-en>My bachelor project in robotics, focused on a soft gripper for delicate handling and classification of apples, oranges, pears and kiwis. I integrated flex and force sensors, collected data through Arduino and UART, and compared Random Forest with LDA. The system achieved up to 93% correct identification in live tests without damaging the fruit.</p>
       <div class="techs">
@@ -324,6 +348,8 @@
       <figure class="project-media">
         <img src="assets/dtmf-robot.webp" alt="TurtleBot3 robot used for DTMF motion control" width="278" height="320" loading="lazy" decoding="async"/>
       </figure>
+      <p class="project-summary" data-da>Semesterprojekt om lydbaseret robotstyring via DTMF med robust protokol og præcis udførelse.</p>
+      <p class="project-summary" data-en>Semester project on DTMF-based robot control with a robust protocol and precise execution.</p>
       <p class="project-desc" data-da>Udviklede en kommunikationsprotokol, der omsatte en planlagt rute til DTMF-toner, afkodede signalet med DFT og sendte bevægelseskommandoer til en TurtleBot3. CRC-15, acknowledgements og pakkenumre sikrede robust dataoverførsel, mens MQTT og ROS stod for udførelsen på robotten med en bevægelsesnøjagtighed på ±2 cm.</p>
       <p class="project-desc" data-en>Developed a communication protocol that translated a planned route into DTMF tones, decoded the signal using a DFT, and sent motion commands to a TurtleBot3. CRC-15, acknowledgements and packet numbering provided robust transmission, while MQTT and ROS handled execution on the robot with movement accuracy of ±2 cm.</p>
       <div class="techs">
@@ -347,7 +373,9 @@
     <div class="skill-card"><p class="skill-name">LaTeX</p><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div><p class="skill-lbl" data-da>Ekspert</p><p class="skill-lbl" data-en>Expert</p></div>
     <div class="skill-card"><p class="skill-name">MATLAB</p><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div><p class="skill-lbl" data-da>Øvet</p><p class="skill-lbl" data-en>Proficient</p></div>
     <div class="skill-card"><p class="skill-name">C / C++</p><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div><p class="skill-lbl" data-da>Øvet</p><p class="skill-lbl" data-en>Proficient</p></div>
+    <div class="skill-card"><p class="skill-name">AI / Machine Learning</p><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div><p class="skill-lbl" data-da>Øvet</p><p class="skill-lbl" data-en>Proficient</p></div>
     <div class="skill-card"><p class="skill-name">HTML & CSS</p><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><p class="skill-lbl" data-da>Avanceret</p><p class="skill-lbl" data-en>Advanced</p></div>
+    <div class="skill-card"><p class="skill-name">Excel / PowerPoint</p><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div><p class="skill-lbl" data-da>Øvet</p><p class="skill-lbl" data-en>Proficient</p></div>
     <div class="skill-card"><p class="skill-name">SQL</p><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><p class="skill-lbl" data-da>Let øvet</p><p class="skill-lbl" data-en>Beginner–Intermediate</p></div>
     <div class="skill-card"><p class="skill-name">Java</p><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div><p class="skill-lbl" data-da>Let øvet</p><p class="skill-lbl" data-en>Beginner–Intermediate</p></div>
     <div class="skill-card"><p class="skill-name">Assembly / VHDL</p><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div><p class="skill-lbl" data-da>Let øvet</p><p class="skill-lbl" data-en>Beginner–Intermediate</p></div>
@@ -362,6 +390,7 @@
     <span class="pill" data-da>Ansvarsbevidst</span><span class="pill" data-en>Responsible & reliable</span>
     <span class="pill" data-da>Teknisk problemløsning</span><span class="pill" data-en>Technical problem-solving</span>
     <span class="pill" data-da>Projektorienteret</span><span class="pill" data-en>Project-oriented</span>
+    <span class="pill" data-da>Projektkoordinering</span><span class="pill" data-en>Project coordination</span>
     <span class="pill" data-da>Interesse for AI & automatisering</span><span class="pill" data-en>Passion for AI & automation</span>
   </div>
 </section>
