@@ -43,8 +43,8 @@
     h1{font-size:clamp(2.8rem,6vw,5rem);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-bottom:1rem}
     h1 br{display:none}
     .accent{color:var(--accent)}
-    .hero-sub{max-width:42rem;font-size:1.05rem;color:var(--muted);line-height:1.75;margin:0 0 1.4rem}
-    .hero-contacts{display:flex;flex-wrap:wrap;gap:1.5rem;margin-bottom:1rem}
+    .hero-sub{display:none}
+    .hero-contacts{display:flex;flex-direction:column;align-items:flex-start;gap:.55rem;margin-bottom:1rem}
     .contact-item{font-family:var(--mono);font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:.5rem}
     .contact-item a{color:var(--muted)}
     .contact-item a:hover{color:var(--accent)}
@@ -140,7 +140,7 @@
       .hero-eyebrow::before{width:10mm}
       h1{font-size:25pt;line-height:.97;margin-bottom:2.2mm}
       .hero-sub{display:none!important}
-      .hero-contacts{gap:1.5mm 4mm;margin:0}
+      .hero-contacts{gap:1.1mm;margin:0}
       .contact-item{font-size:6.9pt;gap:1.1mm}
       .hero-profile{right:0;top:1mm;transform:none;width:34mm;height:43mm;border-radius:3mm;box-shadow:none}
       .hero-profile::after{display:none}
@@ -152,7 +152,7 @@
       .profile-card,.edu-card,.project-card,.skill-card,.lang-card{border:1px solid #ccd3dc;break-inside:avoid;box-shadow:none}
       .print-only{display:block!important}
       .screen-only{display:none!important}
-      .hero-highlights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1mm 4mm;list-style:disc;margin:2mm 0 0;padding-left:3.5mm}
+      .hero-highlights{display:none!important}
       .hero-highlights li{font-size:6.6pt;line-height:1.3;color:#333}
       .profile-card{padding:2mm 2.5mm;grid-template-columns:repeat(2,1fr);gap:3mm}
       .profile-card p{font-size:7.2pt;line-height:1.34}
@@ -259,18 +259,6 @@
       <span class="contact-item"><span class="ci">✉</span> <a href="mailto:Gjersen2@gmail.com">Gjersen2@gmail.com</a></span>
       <span class="contact-item"><span class="ci">🔗</span> <a href="https://www.linkedin.com/in/kristian-gjersen-246243348/" target="_blank">LinkedIn</a></span>
     </div>
-    <p class="hero-sub" data-da>Jeg er en 25-årig civilingeniør i robotteknologi, som er klar til en ny udfordring. Som civilingeniør i robotteknologi har jeg en bred forståelse for mekanik, elektronik, programmering og AI, og jeg prioriterer god kommunikation i mit arbejde.</p>
-    <p class="hero-sub" data-en>I am a 25-year-old robotics engineer ready for a new challenge. As a robotics engineer, I have a broad understanding of mechanics, electronics, programming and AI, and I place high value on clear communication in my work.</p>
-    <ul class="hero-highlights print-only">
-      <li data-da>25-årig civilingeniør i robotteknologi, klar til en ny udfordring.</li>
-      <li data-en>25-year-old robotics engineer, ready for a new challenge.</li>
-      <li data-da>Bred teknisk forståelse inden for mekanik, elektronik, programmering og AI.</li>
-      <li data-en>Broad technical understanding across mechanics, electronics, programming and AI.</li>
-      <li data-da>Prioriterer god kommunikation, struktur og samarbejde i mit arbejde.</li>
-      <li data-en>Prioritises clear communication, structure and collaboration in my work.</li>
-      <li data-da>Erfaring fra tværfaglige projekter fra idé og prototype til test og dokumentation.</li>
-      <li data-en>Experience from cross-disciplinary projects spanning concept, prototyping, testing and documentation.</li>
-    </ul>
     <figure class="hero-profile">
       <img src="assets/profile.webp" alt="Portrait of Kristian Gjersen" width="640" height="800" decoding="async"/>
     </figure>
@@ -304,16 +292,17 @@
     <p class="edu-title" data-da>Civilingeniør i Robotteknologi (Kandidatuddannelse)</p>
     <p class="edu-title" data-en>MSc Robotics Systems (Civil Engineer)</p>
     <p class="edu-inst">Syddansk Universitet (SDU) — Odense</p>
-    <p class="edu-desc" data-da>Bred teknisk forståelse for udvikling af robotsystemer — fra programmering, elektronik, mekanik og regulering til kunstig intelligens, computer vision og avanceret robotstyring. Arbejdet med robotkinematik, signalbehandling, numeriske metoder, statistik, image processing, soft robotics og embodied AI. Uddannelsen har udviklet evnen til at analysere komplekse tekniske problemstillinger og arbejde projektorienteret og tværfagligt fra idé til færdig prototype.</p>
-    <p class="edu-desc" data-en>Broad technical understanding of robotic systems development — spanning programming, electronics, mechanics and control theory through to AI, computer vision and advanced robot control. Covering robot kinematics, signal processing, numerical methods, statistics, image processing, soft robotics and embodied AI. Trained to analyse complex engineering problems and work project-oriented and cross-disciplinary from concept to finished prototype.</p>
+    <p class="edu-desc" data-da>Bred teknisk forståelse for udvikling af robotsystemer — fra programmering, elektronik, mekanik, embedded programming og regulering til kunstig intelligens, computer vision og avanceret robotstyring. Arbejdet med robotkinematik, signalbehandling, numeriske metoder, statistik, image processing, soft robotics og embodied AI. Uddannelsen har udviklet evnen til at analysere komplekse tekniske problemstillinger og arbejde projektorienteret og tværfagligt fra idé til færdig prototype.</p>
+    <p class="edu-desc" data-en>Broad technical understanding of robotic systems development — spanning programming, electronics, mechanics, embedded programming and control theory through to AI, computer vision and advanced robot control. Covering robot kinematics, signal processing, numerical methods, statistics, image processing, soft robotics and embodied AI. Trained to analyse complex engineering problems and work project-oriented and cross-disciplinary from concept to finished prototype.</p>
     <ul class="edu-highlights print-only">
       <li data-da>Programmering</li><li data-en>Programming</li>
       <li data-da>Elektronik</li><li data-en>Electronics</li>
       <li data-da>Mekanik</li><li data-en>Mechanics</li>
+      <li data-da>Embedded programming</li><li data-en>Embedded programming</li>
       <li data-da>Regulering</li><li data-en>Control</li>
       <li data-da>AI</li><li data-en>AI</li>
       <li data-da>Computer vision</li><li data-en>Computer vision</li>
-      <li data-da>Kinematik</li><li data-en>Kinematics</li>
+      <li data-da>Robotkinematik</li><li data-en>Robot kinematics</li>
       <li data-da>Signalbehandling</li><li data-en>Signal processing</li>
       <li data-da>Numeriske metoder</li><li data-en>Numerical methods</li>
       <li data-da>Statistik</li><li data-en>Statistics</li>
@@ -333,15 +322,15 @@
   <h2 data-da>Tekniske færdigheder</h2><h2 data-en>Technical Skills</h2>
   <div class="skills-grid">
     <div class="skill-card"><p class="skill-name">Python</p><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><p class="skill-lbl" data-da>Ekspert</p><p class="skill-lbl" data-en>Expert</p></div>
-    <div class="skill-card"><p class="skill-name">LaTeX</p><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><p class="skill-lbl" data-da>Ekspert</p><p class="skill-lbl" data-en>Expert</p></div>
-    <div class="skill-card"><p class="skill-name">MATLAB</p><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><p class="skill-lbl" data-da>Øvet</p><p class="skill-lbl" data-en>Proficient</p></div>
-    <div class="skill-card"><p class="skill-name">C / C++ / C#</p><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div><p class="skill-lbl" data-da>Avanceret</p><p class="skill-lbl" data-en>Advanced</p></div>
     <div class="skill-card"><p class="skill-name">AI / Machine Learning</p><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><p class="skill-lbl" data-da>Ekspert</p><p class="skill-lbl" data-en>Expert</p></div>
-    <div class="skill-card"><p class="skill-name">HTML & CSS</p><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div><p class="skill-lbl" data-da>Avanceret</p><p class="skill-lbl" data-en>Advanced</p></div>
     <div class="skill-card"><p class="skill-name">Microsoft Office</p><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><p class="skill-lbl" data-da>Ekspert</p><p class="skill-lbl" data-en>Expert</p></div>
+    <div class="skill-card"><p class="skill-name">LaTeX</p><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><p class="skill-lbl" data-da>Ekspert</p><p class="skill-lbl" data-en>Expert</p></div>
+    <div class="skill-card"><p class="skill-name">C / C++ / C#</p><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div><p class="skill-lbl" data-da>Avanceret</p><p class="skill-lbl" data-en>Advanced</p></div>
+    <div class="skill-card"><p class="skill-name">HTML & CSS</p><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div><p class="skill-lbl" data-da>Avanceret</p><p class="skill-lbl" data-en>Advanced</p></div>
+    <div class="skill-card"><p class="skill-name">MATLAB</p><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><p class="skill-lbl" data-da>Øvet</p><p class="skill-lbl" data-en>Proficient</p></div>
     <div class="skill-card"><p class="skill-name">Simulink</p><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><p class="skill-lbl" data-da>Øvet</p><p class="skill-lbl" data-en>Proficient</p></div>
-    <div class="skill-card"><p class="skill-name">Gazebo</p><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><p class="skill-lbl" data-da>Øvet</p><p class="skill-lbl" data-en>Proficient</p></div>
     <div class="skill-card"><p class="skill-name">ROS</p><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><p class="skill-lbl" data-da>Øvet</p><p class="skill-lbl" data-en>Proficient</p></div>
+    <div class="skill-card"><p class="skill-name">Gazebo</p><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><p class="skill-lbl" data-da>Øvet</p><p class="skill-lbl" data-en>Proficient</p></div>
     <div class="skill-card"><p class="skill-name">Linux</p><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><p class="skill-lbl" data-da>Øvet</p><p class="skill-lbl" data-en>Proficient</p></div>
     <div class="skill-card"><p class="skill-name">SQL</p><div class="bar-track"><div class="bar-fill" style="width:48%"></div></div><p class="skill-lbl" data-da>Let øvet</p><p class="skill-lbl" data-en>Beginner–Intermediate</p></div>
     <div class="skill-card"><p class="skill-name">R</p><div class="bar-track"><div class="bar-fill" style="width:48%"></div></div><p class="skill-lbl" data-da>Let øvet</p><p class="skill-lbl" data-en>Beginner–Intermediate</p></div>
