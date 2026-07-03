@@ -254,7 +254,7 @@
       <span class="contact-item print-only"><span class="ci">🌐</span> <a href="https://kristian-gjersen.github.io/" target="_blank">kristian-gjersen.github.io</a></span>
     </div>
     <div class="hero-actions">
-      <a class="print-btn hero-print-btn" id="download-cv-link" href="Kristian-Gjersen-CV-DK.pdf" download="Kristian-Gjersen-CV-DK.pdf"><span data-da>⬇ Download CV (PDF)</span><span data-en>⬇ Download CV (PDF)</span></a>
+      <button class="print-btn hero-print-btn" onclick="window.print()"><span data-da>⬇ Download CV (PDF)</span><span data-en>⬇ Download CV (PDF)</span></button>
     </div>
     <figure class="hero-profile">
       <img src="assets/profile.webp" alt="Portrait of Kristian Gjersen" width="640" height="800" decoding="async"/>
@@ -561,12 +561,7 @@ function setLang(lang) {
   document.getElementById('btn-da').classList.toggle('active', lang === 'da');
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
   document.documentElement.lang = lang;
-  const downloadLink = document.getElementById('download-cv-link');
-  if (downloadLink) {
     const isEnglish = lang === 'en';
-    downloadLink.href = isEnglish ? 'Kristian-Gjersen-CV-EN.pdf' : 'Kristian-Gjersen-CV-DK.pdf';
-    downloadLink.download = isEnglish ? 'Kristian-Gjersen-CV-EN.pdf' : 'Kristian-Gjersen-CV-DK.pdf';
-  }
 }
 
 setLang(document.body.classList.contains('lang-en') ? 'en' : 'da');
