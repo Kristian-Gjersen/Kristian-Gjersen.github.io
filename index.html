@@ -21,7 +21,6 @@
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
 
-    /* Nav */
     nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2.5rem;background:rgba(10,14,26,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
     .nav-logo{font-family:var(--mono);font-size:.85rem;color:var(--accent);letter-spacing:.05em}
     .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
@@ -36,7 +35,6 @@
     .hero-actions{display:flex;justify-content:flex-start;align-items:center;gap:.75rem;flex-wrap:wrap;max-width:34rem;margin:.25rem 0 1.1rem}
     .hero-print-btn{display:inline-flex;align-items:center;justify-content:center;padding:.8rem 1.25rem;font-size:.86rem;box-shadow:0 10px 26px rgba(0,212,255,.16)}
 
-    /* Hero with canvas */
     .hero-wrap{position:relative;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
     #grid-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
     .hero{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:8rem 22rem 4rem 2.5rem;width:100%}
@@ -60,25 +58,21 @@
     .print-only{display:none!important}
     .print-languages{display:none}
 
-    /* Sections */
     section{max-width:1100px;margin:0 auto;padding:5rem 2.5rem;position:relative;z-index:1}
     .section-label{font-family:var(--mono);font-size:.72rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:.75rem}
     .section-label::before{content:'';display:inline-block;width:24px;height:1px;background:var(--accent)}
     h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;letter-spacing:-.02em;margin-bottom:2.5rem}
     .divider{border:none;border-top:1px solid var(--border);margin:0 2.5rem}
 
-    /* Profile */
     .profile-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.75rem 2rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem}
     .profile-card p{font-size:.92rem;color:var(--muted);line-height:1.8}
 
-    /* Education */
     .edu-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.75rem 2rem}
     .edu-period{font-family:var(--mono);font-size:.75rem;color:var(--accent);margin-bottom:.5rem}
     .edu-title{font-size:1.15rem;font-weight:700;margin-bottom:.25rem}
     .edu-inst{font-size:.88rem;color:var(--muted);margin-bottom:1rem}
     .edu-desc{font-size:.9rem;color:var(--muted);line-height:1.8}
 
-    /* Projects */
     .projects-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem}
     .project-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:border-color .2s,transform .2s;display:flex;flex-direction:column;gap:.75rem}
     .project-card:hover{border-color:var(--accent);transform:translateY(-3px)}
@@ -92,12 +86,10 @@
     .techs{display:flex;flex-wrap:wrap;gap:.4rem}
     .tech{font-family:var(--mono);font-size:.68rem;background:var(--surface2);border:1px solid var(--border);color:var(--muted);padding:2px 8px;border-radius:3px}
 
-    /* Media placeholder */
     .media-placeholder{background:var(--surface2);border:1px solid var(--border);border-radius:6px;height:160px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.75rem;color:var(--muted);flex-direction:column;gap:.5rem}
     .project-media{background:radial-gradient(circle at 50% 55%,rgba(0,212,255,.08),transparent 68%),var(--surface2);border:1px solid var(--border);border-radius:6px;aspect-ratio:4/3;overflow:hidden;display:flex;align-items:center;justify-content:center}
     .project-media img{display:block;width:100%;height:100%;object-fit:contain}
 
-    /* Skills */
     .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
     .skill-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;transition:border-color .2s,transform .2s}
     .skill-card:hover{border-color:var(--accent);transform:translateY(-2px)}
@@ -106,27 +98,22 @@
     .bar-fill{height:100%;background:var(--accent);border-radius:2px}
     .skill-lbl{font-size:.7rem;color:var(--muted);font-family:var(--mono)}
 
-    /* Languages */
     .lang-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
     .lang-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem}
     .lang-name{font-size:1rem;font-weight:700;margin-bottom:.3rem}
     .lang-level{font-family:var(--mono);font-size:.75rem;color:var(--green)}
 
-    /* Pills */
     .pills{display:flex;flex-wrap:wrap;gap:.6rem}
     .pill{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:.4rem 1rem;font-size:.85rem;transition:border-color .2s}
     .pill:hover{border-color:var(--accent)}
 
-    /* Subheading */
     .subh{font-size:1.1rem;font-weight:700;margin-bottom:1rem;margin-top:2rem}
 
     footer{text-align:center;padding:2rem;font-family:var(--mono);font-size:.75rem;color:var(--muted);border-top:1px solid var(--border);position:relative;z-index:1}
 
-    /* Lang toggle */
     body.lang-en [data-da]{display:none!important}
     body.lang-da [data-en]{display:none!important}
 
-    /* Print */
     @media print {
       *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
       :root{--bg:#fff;--surface:#f8f9fa;--surface2:#eef0f3;--border:#d0d7e3;--accent:#0055aa;--accent2:#0055aa;--text:#111;--muted:#555;--green:#007a50}
@@ -167,14 +154,18 @@
       .edu-desc{display:none!important}
       .edu-highlights{display:flex!important;flex-wrap:wrap;gap:1mm;margin:0;padding:0;list-style:none}
       .edu-highlights li{font-size:6.5pt;line-height:1.15;color:#333;border:1px solid #ccd3dc;border-radius:999px;padding:.9mm 1.8mm;background:#f8f9fa}
-      .print-languages{display:block;margin-top:2.4mm}
-      .print-lang-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2mm}
-      .print-lang-box{border:1px solid #ccd3dc;border-radius:2mm;padding:1.6mm 2mm;background:#f8f9fa}
-      .print-lang-box strong{display:block;font-size:7.7pt;line-height:1.15}
-      .print-lang-box span{display:block;font-size:6.5pt;line-height:1.2;color:#555}
-      .print-license{margin-top:1.8mm}
-      .print-license .subh{margin:0 0 .9mm}
-      .print-license .pills{gap:1mm}
+      .print-languages{display:block;margin-top:1.2mm;break-inside:avoid}
+      .print-lang-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2mm;align-items:stretch}
+      .print-lang-group{min-width:0;border:1px solid #ccd3dc;border-radius:2mm;padding:1.6mm 2mm;background:#f8f9fa}
+      .print-lang-title{font-size:6.4pt;letter-spacing:.15em;text-transform:uppercase;color:#0055aa;margin:0 0 1.2mm}
+      .print-lang-row{display:flex;flex-direction:column;gap:1mm;align-items:stretch}
+      .print-lang-box{display:flex;justify-content:space-between;align-items:center;gap:1mm;border:1px solid #d9e0ea;border-radius:1.6mm;padding:1mm 1.6mm;background:#fff}
+      .print-lang-box strong{display:inline;font-size:7pt;line-height:1.1}
+      .print-lang-box span{display:inline;font-size:6.3pt;line-height:1.1;color:#555}
+      .print-license{margin-top:0}
+      .print-license .subh{display:none}
+      .print-license .pills{display:block;gap:0}
+      .print-license .pill{display:inline-block;margin:0;font-size:6.8pt;padding:0;border:none;background:transparent}
       #languages{display:none!important}
       .projects-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2.6mm}
       .project-card{
@@ -201,9 +192,9 @@
       .skill-name{font-size:7.5pt;margin-bottom:.9mm}
       .bar-track{height:.7mm;margin-bottom:.5mm}
       .skill-lbl{font-size:5.9pt}
-      .subh{font-size:9.5pt;margin:3.2mm 0 1.7mm}
-      .pills{gap:1mm}
-      .pill{font-size:6.9pt;padding:.9mm 2.1mm}
+      .subh{font-size:9.3pt;margin:2.2mm 0 1.2mm}
+      .pills{gap:.8mm}
+      .pill{font-size:6.6pt;padding:.8mm 1.8mm}
       .lang-grid{grid-template-columns:repeat(2,1fr);gap:2mm}
       .lang-card{padding:1.5mm 2.5mm}
       .lang-name{font-size:8.5pt;margin-bottom:.35mm}
@@ -232,7 +223,6 @@
 </head>
 <body class="lang-da">
 
-<!-- Nav -->
 <nav>
   <span class="nav-logo">KG.dev</span>
   <ul class="nav-links">
@@ -248,7 +238,6 @@
   </div>
 </nav>
 
-<!-- Hero with interactive grid -->
 <div class="hero-wrap">
   <canvas id="grid-canvas"></canvas>
   <div class="hero">
@@ -270,14 +259,11 @@
     <figure class="hero-profile">
       <img src="assets/profile.webp" alt="Portrait of Kristian Gjersen" width="640" height="800" decoding="async"/>
     </figure>
-    <!--<p class="hint" data-da>// før musen over en linje for at bryde forbindelsen</p>-->
-    <!--<p class="hint" data-en>// move across a line to break the connection</p>-->
   </div>
 </div>
 
 <hr class="divider"/>
 
-<!-- Profile -->
 <section id="profile">
   <p class="section-label" data-da>Profil</p><p class="section-label" data-en>Profile</p>
   <h2 data-da>Om mig</h2><h2 data-en>About Me</h2>
@@ -291,7 +277,6 @@
 
 <hr class="divider"/>
 
-<!-- Education -->
 <section id="education">
   <p class="section-label" data-da>Uddannelse</p><p class="section-label" data-en>Education</p>
   <h2 data-da>Akademisk baggrund</h2><h2 data-en>Academic Background</h2>
@@ -326,7 +311,6 @@
 
 <hr class="divider"/>
 
-<!-- Skills -->
 <section id="skills">
   <p class="section-label" data-da>Kompetencer</p><p class="section-label" data-en>Skills</p>
   <h2 data-da>Tekniske færdigheder</h2><h2 data-en>Technical Skills</h2>
@@ -374,19 +358,23 @@
 <hr class="divider"/>
 
 <div class="print-languages">
-  <p class="section-label" data-da>Sprog</p><p class="section-label" data-en>Languages</p>
-  <div class="print-lang-row">
-    <div class="print-lang-box"><strong data-da>Dansk</strong><strong data-en>Danish</strong><span data-da>Modersmål</span><span data-en>Native</span></div>
-    <div class="print-lang-box"><strong data-da>Engelsk</strong><strong data-en>English</strong><span data-da>Flydende</span><span data-en>Fluent</span></div>
-  </div>
-  <div class="print-license">
-    <p class="subh" data-da>Kørekort</p>
-    <p class="subh" data-en>Driving Licence</p>
-    <div class="pills"><span class="pill">🚗 <span data-da>Kategori B</span><span data-en>Category B</span></span></div>
+  <div class="print-lang-layout">
+    <div class="print-lang-group">
+      <p class="print-lang-title" data-da>Sprog</p><p class="print-lang-title" data-en>Languages</p>
+      <div class="print-lang-row">
+        <div class="print-lang-box"><strong data-da>Dansk:</strong><strong data-en>Danish:</strong><span data-da>Modersmål</span><span data-en>Native</span></div>
+        <div class="print-lang-box"><strong data-da>Engelsk:</strong><strong data-en>English:</strong><span data-da>Flydende</span><span data-en>Fluent</span></div>
+      </div>
+    </div>
+    <div class="print-lang-group">
+      <p class="print-lang-title" data-da>Kørekort</p><p class="print-lang-title" data-en>Driving Licence</p>
+      <div class="print-lang-box print-license">
+        <div class="pills"><span class="pill">🚗 <span data-da>Kategori B</span><span data-en>Category B</span></span></div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- Projects -->
 <section id="projects">
   <p class="section-label" data-da>Projekter</p><p class="section-label" data-en>Projects</p>
   <h2 data-da>Projektforløb</h2><h2 data-en>Project Portfolio</h2>
@@ -550,7 +538,6 @@
 
 <hr class="divider"/>
 
-<!-- Languages -->
 <section id="languages">
   <p class="section-label" data-da>Sprog</p><p class="section-label" data-en>Languages</p>
   <h2 data-da>Sprogkundskaber</h2><h2 data-en>Language Skills</h2>
@@ -584,7 +571,6 @@ function setLang(lang) {
 
 setLang(document.body.classList.contains('lang-en') ? 'en' : 'da');
 
-// Interactive spring mesh
 (function() {
   const canvas = document.getElementById('grid-canvas');
   const ctx = canvas.getContext('2d');
@@ -633,7 +619,6 @@ setLang(document.body.classList.contains('lang-en') ? 'en' : 'da');
       }
     }
 
-    // A rest length below the drawn spacing gives the mesh stored tension.
     const rest = SPACING * 0.88;
     const connect = (a, b) => {
       const spring = { a, b, rest, broken:false };
@@ -688,16 +673,12 @@ setLang(document.body.classList.contains('lang-en') ? 'en' : 'da');
     const rect = canvas.getBoundingClientRect();
     width = rect.width;
     height = rect.height;
-    // A large backing canvas plus shadows is expensive on 4K/Retina screens.
-    // 1.25 keeps the glow crisp without rendering millions of extra pixels.
     dpr = Math.min(window.devicePixelRatio || 1, 1.25);
     canvas.width = Math.round(width * dpr);
     canvas.height = Math.round(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     buildMesh();
     if (!reducedMotion) {
-      // Fully resolve the portrait cut-out before the first visible frame so
-      // later mouse interaction does not reveal unfinished startup motion.
       for (let i = 0; i < 160; i++) simulate(0.45);
       for (const n of nodes) { n.vx = 0; n.vy = 0; }
     }
@@ -736,7 +717,6 @@ setLang(document.body.classList.contains('lang-en') ? 'en' : 'da');
     ctx.globalCompositeOperation = 'lighter';
     ctx.lineCap = 'round';
 
-    // Wide translucent pass creates a restrained electric glow.
     ctx.beginPath();
     for (const s of springs) {
       if (s.broken) continue;
@@ -798,7 +778,6 @@ setLang(document.body.classList.contains('lang-en') ? 'en' : 'da');
     nearest.broken = true;
     canvas.dataset.brokenSprings = String(Number(canvas.dataset.brokenSprings) + 1);
 
-    // The recoil makes the released tension legible immediately.
     const dx = nearest.b.x - nearest.a.x;
     const dy = nearest.b.y - nearest.a.y;
     const length = Math.hypot(dx, dy) || 1;
@@ -844,8 +823,6 @@ setLang(document.body.classList.contains('lang-en') ? 'en' : 'da');
     }
 
     if (now - animationStarted > 2200) {
-      // Finish the remaining tiny motion off-screen rather than freezing the
-      // mesh between positions when the safety limit is reached.
       for (let i = 0; i < 28; i++) simulate(0.45);
       for (const n of nodes) { n.vx = 0; n.vy = 0; }
       draw();
@@ -875,7 +852,6 @@ setLang(document.body.classList.contains('lang-en') ? 'en' : 'da');
 
   hero.addEventListener('pointerleave', () => { lastPointer = null; pointerTravel = 0; });
 
-  // Keyboard reset is useful after experimenting without adding UI chrome.
   window.addEventListener('keydown', e => {
     if (e.key.toLowerCase() === 'r' && hero.matches(':hover')) {
       buildMesh();
@@ -886,8 +862,6 @@ setLang(document.body.classList.contains('lang-en') ? 'en' : 'da');
   window.addEventListener('resize', resize);
   resize();
 
-  // Fonts and image decoding can shift the portrait after the first layout.
-  // Rebuild once those dimensions are final, then leave the mesh sleeping.
   const profileImage = hero.querySelector('.hero-profile img');
   const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
   const imageReady = profileImage && profileImage.decode
